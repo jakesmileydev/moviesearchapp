@@ -4,13 +4,74 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+
+    <!-- Style Sheet-->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JS -->
+    <script defer src="script.js"></script>
     <title>Movie Search App</title>
   </head>
   <body>
-    <header>Movie Search App</header>
+    <header>
+      <h1><i class="ph-ticket header-icon"></i>Movie Search App</h1>
+    </header>
     <main>
-      <div class="search-bar">
-        <input class="search-text" type="text" />
+      <form class="search-form">
+        <div class="search-bar">
+          <input
+            required
+            class="search-bar__input"
+            type="text"
+            placeholder="Search movies..."
+          />
+          <button class="search-bar__button">
+            <i class="ph-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+      <div class="loader-container">
+        <div class="loader loader__hidden">
+          <svg
+            version="1.1"
+            id="loader-1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="80px"
+            height="80px"
+            viewBox="0 0 50 50"
+            style="enable-background: new 0 0 50 50"
+            xml:space="preserve"
+          >
+            <path
+              fill="#000"
+              d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"
+            >
+              <animateTransform
+                attributeType="xml"
+                attributeName="transform"
+                type="rotate"
+                from="0 25 25"
+                to="360 25 25"
+                dur="0.6s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </svg>
+        </div>
       </div>
     </main>
   </body>
