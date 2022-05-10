@@ -9,6 +9,7 @@ const pagination = document.querySelector(".pagination");
 
 let query;
 let page = 1;
+let totalResults = 0;
 
 // Create green outline for search bar on user focus
 searchBarInput.addEventListener("focus", () => {
@@ -25,6 +26,7 @@ searchForm.addEventListener("submit", (e) => {
   query = searchBarInput.value;
   // reset page value in case this isn't the first search
   page = 1;
+  totalResults = 0;
   // Get search results of query from the OMDB API
   getMovieData(query);
 });
@@ -48,6 +50,7 @@ const renderMovieData = function (searchData) {
   // Clear existing results
   searchResults.innerHTML = "";
   searchBarInput.value = "";
+  totalResults = searchData.totalResults;
   renderPagination(searchData.totalResults);
 
   // Create new list element for each search result and render on page
@@ -71,6 +74,8 @@ const renderMovieData = function (searchData) {
 };
 
 const renderPagination = function (totalResults) {
+  const lastPage = Math.floor(totalResults / 10) + 1;
+  console.log(lastPage + " is last page");
   pagination.innerHTML = "";
   if (totalResults <= 10)
     return pagination.insertAdjacentHTML(
@@ -80,7 +85,7 @@ const renderPagination = function (totalResults) {
   pagination.insertAdjacentHTML(
     "afterbegin",
     `Showing ${page === 1 ? page : page * 10 - 9}-${
-      page * 10
+      page === lastPage ? totalResults : page * 10
     } of ${totalResults} results for '${query}'`
   );
   const paginationButtonsHTML = `
@@ -96,12 +101,13 @@ const renderPagination = function (totalResults) {
 pagination.addEventListener("click", (e) => {
   if (!e.target.closest(".pagination-button")) return;
   if (e.target.closest(".previous")) {
-    console.log("go back");
     if (page === 1) return;
     page--;
   }
   if (e.target.closest(".next")) {
-    console.log("go forward");
+    console.log(totalResults);
+    const maxPages = Math.floor(totalResults / 10);
+    if (page > maxPages) return;
     page++;
   }
   searchResults.innerHTML = "";
