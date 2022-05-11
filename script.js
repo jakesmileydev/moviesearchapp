@@ -24,140 +24,17 @@ searchBarInput.addEventListener("blur", () => {
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   query = searchBarInput.value;
-  // reset page value in case this isn't the first search
-  page = 1;
-  totalResults = 0;
+
   // Get search results of query from the OMDB API
-  searchMovies(query);
+  searchForMovie(query);
 });
 
-const searchMovies = async function (userQuery) {
+const searchForMovie = async function (userQuery) {
   let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&page=${page}&type=movie&s=`;
 
-  // Start loader
-  loader.classList.remove("loader__hidden");
   // Fetch data and convert to json
   const response = await fetch(`${SEARCH_URL}${userQuery}`);
   const data = await response.json();
 
-  // Stop loader
-  loader.classList.add("loader__hidden");
-  // If there are results, render them
-  if (data.Search) renderMovieData(data);
-};
-
-const renderMovieData = function (searchData) {
-  // Clear existing results
-  searchResults.innerHTML = "";
-  searchBarInput.value = "";
-  totalResults = searchData.totalResults;
-  renderPagination(searchData.totalResults);
-
-  // Create new list element for each search result and render on page
-  searchData.Search.forEach((result) => {
-    const HTML = `
-        <li class="search-result" data-id=${result.imdbID}>
-        <img
-          class="poster"
-          src=${result.Poster}
-          alt="${result.Title} poster image"
-        />
-        <div class="result-info">
-          <h3 class="title">${result.Title}</h3>
-          <p class="year">${result.Year}</p>
-        </div>
-        <i class="ph-caret-right"></i>
-      </li>
-        `;
-    searchResults.insertAdjacentHTML("beforeend", HTML);
-  });
-};
-
-const renderPagination = function (totalResults) {
-  const lastPage = Math.floor(totalResults / 10) + 1;
-
-  pagination.innerHTML = "";
-  if (totalResults <= 10)
-    return pagination.insertAdjacentHTML(
-      "afterbegin",
-      `Showing ${totalResults} results for ${query}`
-    );
-  pagination.insertAdjacentHTML(
-    "afterbegin",
-    `Showing ${page === 1 ? page : page * 10 - 9}-${
-      page === lastPage ? totalResults : page * 10
-    } of ${totalResults} results for '${query}'`
-  );
-  const paginationButtonsHTML = `
-    <div class="pagination-buttons">
-        <button class="pagination-button previous"><i class="ph-caret-circle-left"></i></button>
-        <p>Page ${page}</p>
-        <button class="pagination-button next"><i class="ph-caret-circle-right"></i></button>
-    </div>
-  `;
-  pagination.insertAdjacentHTML("beforeend", paginationButtonsHTML);
-};
-
-pagination.addEventListener("click", (e) => {
-  if (!e.target.closest(".pagination-button")) return;
-  if (e.target.closest(".previous")) {
-    if (page === 1) return;
-    page--;
-  }
-  if (e.target.closest(".next")) {
-    const maxPages = Math.floor(totalResults / 10);
-    if (page > maxPages) return;
-    page++;
-  }
-  searchResults.innerHTML = "";
-  searchMovies(query);
-});
-
-searchResults.addEventListener("click", (e) => {
-  if (!e.target.closest(".search-result")) return;
-  // Take the id of whichever movie was clicked, and fetch it from the API
-  getSingleMovieData(e.target.closest(".search-result").dataset.id);
-});
-
-const getSingleMovieData = async function (id) {
-  const response = await fetch(
-    `http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
-  );
-  const data = await response.json();
-
-  // clear search results and pagination
-  searchResults.innerHTML = "";
-  pagination.innerHTML = "";
-  // Render Movie Details
-  renderSingleMovieDetails(data);
-};
-
-const renderSingleMovieDetails = function (movieData) {
-  const movieDetailsHTML = `
-  <div class="movie-details">
-  <img
-    class="movie-poster"
-    src=${movieData.Poster}
-    alt=""
-  />
-  <div class="details">
-    <h3 class="movie-title">${movieData.Title}</h3>
-    <div class="details-row-1">
-      <p class="year">${movieData.Year}</p>
-      <p class="director">${movieData.Director}</p>
-    </div>
-    <div class="details-row-2">
-      <p class="film-length">${movieData.Runtime}</p>
-      <p class="genre">${movieData.Genre}</p>
-    </div>
-    <p class="plot">
-      ${movieData.Plot}
-    </p>
-    <p class="actors">${movieData.Actors}</p>
-  </div>
-</div>
-  `;
-  document
-    .querySelector("main")
-    .insertAdjacentHTML("beforeend", movieDetailsHTML);
+  console.log(data);
 };

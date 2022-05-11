@@ -5,7 +5,8 @@ colors
 #F3F3F5  main text
 #22222B  search bar background
 #78869D  accent text
-#272732 search bar background__active
+#86889d  greeting text
+#31323F search bar background__active
 */
 * {
   padding: 0;
@@ -19,37 +20,39 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+body {
+  background: #15151a;
+  height: calc(100vh -38px);
+  color: #f3f3f5;
+}
+header {
+  text-align: center;
+}
+.site-header {
   display: flex;
   justify-content: center;
   gap: 1rem;
   align-items: center;
   margin: 2rem 0;
 }
-body {
-  background: #15151a;
-  height: calc(100vh -38px);
-  color: #f3f3f5;
-  max-width: 80rem;
-  margin: 0 auto;
-}
-
-header {
-  text-align: center;
-}
 
 h1 i {
   color: #34d399;
 }
-
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+}
 /* ///////////////////////////////////// */
 /* Search Bar */
 .search-form {
-  width: 95%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 4rem;
-  max-width: 60rem;
+  margin: 0 2rem 0 2rem;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.search-form.search-form__welcome {
+  transform: translateY(15rem);
 }
 .search-bar {
   width: 100%;
@@ -62,9 +65,11 @@ h1 i {
   border: 2px solid transparent;
   overflow: hidden;
   transition: 0.3s all;
+  position: relative;
 }
 .search-bar.searching {
   border: 2px solid #34d399;
+  background-color: #31323f;
 }
 
 .search-bar__input {
@@ -81,142 +86,38 @@ h1 i {
   border: none;
   outline: none;
   font-size: 1.6rem;
-  padding-top: 0.4rem;
-  padding-right: 0.4rem;
+  position: absolute;
+  right: -2rem;
+  top: -2.1rem;
+  padding: 3rem 3rem 3rem 0.8rem;
   color: #34d399;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .search-bar__button:hover {
   cursor: pointer;
+  color: white;
+  background-color: #34d399;
 }
 
 /* ///////////////////////////////////// */
-/* Loader */
-.loader-container {
-  width: 100%;
+/* Greeting */
+.greeting {
   display: flex;
-  justify-content: center;
-}
-.loader {
-  margin: 0 0 2em;
-  text-align: center;
-  padding: 1em;
-  margin: 0 auto 1em;
-  display: inline-block;
-  vertical-align: top;
-}
-.loader__hidden {
-  display: none;
-}
-svg path,
-svg rect {
-  fill: #34d399;
-}
-
-/* ///////////////////////////////////// */
-/* Search Results */
-.search-results {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-}
-.search-result {
-  width: 95%;
-  background-color: #22222b;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 0.2fr;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  margin: 0 0 1rem 0;
-  padding: 1rem;
-  align-items: center;
-
-  border-radius: 0.75rem;
-  border: 2px solid transparent;
-}
-.search-result:hover {
-  border: 2px solid #34d399;
-  cursor: pointer;
-}
-.search-result i {
-  font-size: 1.4rem;
-}
-.poster {
-  width: 100%;
-}
-
-/* ///////////////////////////////////// */
-
-/* Pagination */
-.pagination-buttons {
-  display: flex;
-  justify-content: space-between;
-  color: #34d399;
-  align-items: center;
-}
-.pagination {
-  padding: 1rem;
-  text-align: center;
-  /* color: #34d399; */
-}
-.pagination-button {
-  color: #34d399;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  margin: 1rem 1rem 0 1rem;
-}
-.pagination-button:hover {
-  cursor: pointer;
-}
-
-/* ///////////////////////////////////// */
-/* Movie Details */
-.movie-details {
-  width: 95%;
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: 60rem;
-  margin: 0 auto 1rem auto;
-  background-color: #22222b;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  justify-items: center;
-  padding: 1rem;
-}
-.movie-poster {
-  width: 100%;
-  max-width: 350px;
-}
-.details {
   margin-top: 1rem;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-.movie-title {
-  font-size: 2.6rem;
-  margin-bottom: 0.6rem;
+.greeting__welcome {
+  transform: translateY(15rem);
 }
-.details-row-1 {
-  display: flex;
-  gap: 1rem;
-  font-size: 1.2rem;
-  color: #a4a6b5;
-  margin-bottom: 2.4rem;
+.greeting__arrow {
+  width: 6rem;
 }
-.details-row-2 {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #a4a6b5;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-}
-.film-length {
-  border: 1px solid #a4a6b5;
-  padding: 0.2rem;
-}
-.plot {
-  margin-bottom: 1rem;
-}
-.actors {
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
-  color: #a4a6b5;
+.greeting__text {
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #86889d;
 }
