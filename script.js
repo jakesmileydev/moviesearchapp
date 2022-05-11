@@ -28,10 +28,10 @@ searchForm.addEventListener("submit", (e) => {
   page = 1;
   totalResults = 0;
   // Get search results of query from the OMDB API
-  getMovieData(query);
+  searchMovies(query);
 });
 
-const getMovieData = async function (userQuery) {
+const searchMovies = async function (userQuery) {
   let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&page=${page}&type=movie&s=`;
 
   // Start loader
@@ -39,7 +39,7 @@ const getMovieData = async function (userQuery) {
   // Fetch data and convert to json
   const response = await fetch(`${SEARCH_URL}${userQuery}`);
   const data = await response.json();
-  console.log(data);
+
   // Stop loader
   loader.classList.add("loader__hidden");
   // If there are results, render them
@@ -75,7 +75,7 @@ const renderMovieData = function (searchData) {
 
 const renderPagination = function (totalResults) {
   const lastPage = Math.floor(totalResults / 10) + 1;
-  console.log(lastPage + " is last page");
+
   pagination.innerHTML = "";
   if (totalResults <= 10)
     return pagination.insertAdjacentHTML(
@@ -111,5 +111,18 @@ pagination.addEventListener("click", (e) => {
     page++;
   }
   searchResults.innerHTML = "";
-  getMovieData(query);
+  searchMovies(query);
 });
+
+searchResults.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-result")) return;
+  findSingleMovieData(e.target.closest(".search-result").dataset.id);
+});
+
+const findSingleMovieData = async function (id) {
+  const response = await fetch(
+    `http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
+  );
+  const data = await response.json();
+  console.log(data);
+};
