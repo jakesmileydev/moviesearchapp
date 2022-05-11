@@ -105,7 +105,6 @@ pagination.addEventListener("click", (e) => {
     page--;
   }
   if (e.target.closest(".next")) {
-    console.log(totalResults);
     const maxPages = Math.floor(totalResults / 10);
     if (page > maxPages) return;
     page++;
@@ -116,13 +115,49 @@ pagination.addEventListener("click", (e) => {
 
 searchResults.addEventListener("click", (e) => {
   if (!e.target.closest(".search-result")) return;
-  findSingleMovieData(e.target.closest(".search-result").dataset.id);
+  // Take the id of whichever movie was clicked, and fetch it from the API
+  getSingleMovieData(e.target.closest(".search-result").dataset.id);
 });
 
-const findSingleMovieData = async function (id) {
+const getSingleMovieData = async function (id) {
   const response = await fetch(
     `http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
   );
   const data = await response.json();
-  console.log(data);
+
+  // clear search results and pagination
+  searchResults.innerHTML = "";
+  pagination.innerHTML = "";
+  // Render Movie Details
+  renderSingleMovieDetails(data);
+};
+
+const renderSingleMovieDetails = function (movieData) {
+  const movieDetailsHTML = `
+  <div class="movie-details">
+  <img
+    class="movie-poster"
+    src=${movieData.Poster}
+    alt=""
+  />
+  <div class="details">
+    <h3 class="movie-title">${movieData.Title}</h3>
+    <div class="details-row-1">
+      <p class="year">${movieData.Year}</p>
+      <p class="director">${movieData.Director}</p>
+    </div>
+    <div class="details-row-2">
+      <p class="film-length">${movieData.Runtime}</p>
+      <p class="genre">${movieData.Genre}</p>
+    </div>
+    <p class="plot">
+      ${movieData.Plot}
+    </p>
+    <p class="actors">${movieData.Actors}</p>
+  </div>
+</div>
+  `;
+  document
+    .querySelector("main")
+    .insertAdjacentHTML("beforeend", movieDetailsHTML);
 };
