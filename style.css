@@ -37,7 +37,9 @@ header {
   align-items: center;
   margin: 2rem 0;
 }
-
+main {
+  margin-top: 3rem;
+}
 h1 i {
   color: #34d399;
 }
@@ -49,7 +51,7 @@ h1 i {
 /* Search Bar */
 .search-form {
   margin: 0 2rem 0 2rem;
-  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: transform 0.32s ease;
 }
 .search-form.search-form__welcome {
   transform: translateY(15rem);
@@ -67,7 +69,7 @@ h1 i {
   transition: 0.3s all;
   position: relative;
 }
-.search-bar.searching {
+.search-bar.search-bar__active {
   border: 2px solid #34d399;
   background-color: #31323f;
 }
@@ -91,7 +93,7 @@ h1 i {
   top: -2.1rem;
   padding: 3rem 3rem 3rem 0.8rem;
   color: #34d399;
-  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.25s ease;
 }
 .search-bar__button:hover {
   cursor: pointer;
@@ -107,10 +109,14 @@ h1 i {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
-  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: transform 0.32s ease, opacity 0.2s;
 }
-.greeting__welcome {
+.greeting.greeting__welcome {
   transform: translateY(15rem);
+}
+.greeting.greeting__hidden {
+  display: none;
+  opacity: 0;
 }
 .greeting__arrow {
   width: 6rem;
@@ -120,4 +126,57 @@ h1 i {
   font-size: 1.6rem;
   text-align: center;
   color: #86889d;
+}
+
+/* ///////////////////////////////////// */
+/* Spinner */
+.spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+.spinner.spinner__visible {
+  opacity: 1;
+}
+.path {
+  stroke: #34d399;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* ///////////////////////////////////// */
+/* Search Results */
+.search-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 2rem;
 }
