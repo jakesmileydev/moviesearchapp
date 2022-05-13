@@ -125,6 +125,7 @@ h1 i {
   font-family: "Gloria Hallelujah", cursive;
   font-size: 1.6rem;
   text-align: center;
+  padding: 2rem;
   color: #86889d;
 }
 
@@ -180,6 +181,16 @@ h1 i {
   justify-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(4rem);
+}
+.search-results.search-results__fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.search-results.search-results__fade-out {
+  opacity: 0;
 }
 .search-result {
   display: flex;
@@ -223,11 +234,11 @@ h1 i {
 }
 
 .search-result__info {
-  padding: 1.4rem;
+  padding: 1rem;
 }
 .search-result__img-box {
   width: 80%;
-  max-width: 300px;
+  max-width: 200px;
   margin: -50% auto 0 auto;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -238,11 +249,17 @@ h1 i {
   width: 100%;
 }
 .search-result__title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   text-align: center;
 }
 .search-result__year {
   font-size: 1.2rem;
   text-align: center;
   margin-top: 0.6rem;
+}
+.error-message__search {
+  font-family: "Gloria Hallelujah", cursive;
+  text-align: center;
+  color: #86889d;
+  font-size: 1.4rem;
 }

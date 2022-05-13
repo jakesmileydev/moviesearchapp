@@ -43,10 +43,13 @@ const removeSpinner = function () {
 const animateMovieSelection = function (e) {
   if (!e.target.closest(".search-result__link")) return;
   const thisMovie = e.target.closest(".search-result__link");
-  thisMovie.style.boxShadow = "0 0 12px #34d399";
+  thisMovie.style.boxShadow = "0 0 20px #34d399";
   setTimeout(() => {
-    thisMovie.style.boxShadow = "0 0 6px #34d399";
-  }, 100);
+    thisMovie.style.boxShadow = "0 0 15px #34d399";
+  }, 50);
+  setTimeout(() => {
+    thisMovie.style.boxShadow = "0 0 10px #34d399";
+  }, 75);
   setTimeout(() => {
     thisMovie.style.boxShadow = "";
   }, 100);
@@ -66,16 +69,17 @@ const searchMovies = async function (userQuery) {
   return data;
 };
 
-const hideGreeting = function () {
+const hideGreeting = async function () {
   greeting.classList.remove("greeting__welcome");
   searchForm.classList.remove("search-form__welcome");
-  setTimeout(() => {
-    greeting.classList.add("greeting__hidden");
-  }, 270);
+  await wait(270);
+
+  greeting.classList.add("greeting__hidden");
 };
 
 const showGreeting = function () {
   clearSearchResults();
+  searchBarInput.value = "";
   greeting.classList.remove("greeting__hidden");
   greeting.classList.add("greeting__welcome");
   searchForm.classList.add("search-form__welcome");
@@ -83,14 +87,29 @@ const showGreeting = function () {
   spinnerDelay = 375;
 };
 
+const clearSearchErrorMessage = function () {
+  document.querySelector(".error-message__search")
+    ? document.querySelector(".error-message__search").remove()
+    : "";
+};
+const renderSearchError = function () {
+  content.insertAdjacentHTML(
+    "afterbegin",
+    `<div class="error-message__search">We couldn't find any movies matching that title. <br> Please try again :)</div>`
+  );
+};
 const renderSearchResults = function (data) {
   let results = "";
+  if (!data.Search) return renderSearchError();
+
   data.Search.forEach((result) => {
     results += `
       <li class="search-result">
         <a class="search-result__link" href="#title/${result.imdbID}">
           <div class="search-result__img-box">
-            <img class="search-result__img" src=${result.Poster}>
+            <img class="search-result__img" src=${
+              result.Poster === "N/A" ? "default-poster.webp" : result.Poster
+            }>
           </div>
           <div class="search-result__info">
             <h3 class="search-result__title">${result.Title}</h3>
@@ -108,10 +127,13 @@ const renderSearchResults = function (data) {
   content.insertAdjacentHTML("afterbegin", searchResultsHTML);
 };
 
-const clearSearchResults = function () {
-  document.querySelector(".search-results")
-    ? document.querySelector(".search-results").remove()
-    : "";
+const clearSearchResults = async function () {
+  const searchResults = document.querySelector(".search-results");
+  if (searchResults) {
+    searchResults.classList.add("search-results__fade-out");
+    await wait(320);
+    searchResults.remove();
+  }
 };
 
 const submitSearch = function (e) {
@@ -125,9 +147,18 @@ const renderMovieDetails = function (movieData) {
   clearSearchResults();
 };
 
+const wait = (timeToDelay) =>
+  new Promise((resolve) => setTimeout(resolve, timeToDelay));
+
 const navigateToSearchResults = async function (query) {
   // If this is the first search (greeting__welcome class is applied), search bar and arrow slide up, then arrow fades out
-  greeting.classList.contains("greeting__hidden") ? "" : hideGreeting();
+  if (greeting.classList.contains("greeting__welcome")) {
+    hideGreeting();
+    await wait(270);
+  }
+  const search = "%20";
+  const replace = " ";
+  searchBarInput.value = query.split(search).join(replace);
   // Clear search results
   clearSearchResults();
   // spinner fade in
@@ -139,13 +170,18 @@ const navigateToSearchResults = async function (query) {
   // render search results
   renderSearchResults(data);
   // results slide up and fade in
+  await wait(75);
+  document
+    .querySelector(".search-results")
+    .classList.add("search-results__fade-in");
 };
 
 const navigateToMovieDetails = async function (titleID) {
+  searchBarInput.value = "";
   let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${titleID}`;
   clearSearchResults();
-  const response = await fetch(SEARCH_URL);
   renderSpinner();
+  const response = await fetch(SEARCH_URL);
   const data = await response.json();
   removeSpinner();
 
@@ -154,21 +190,22 @@ const navigateToMovieDetails = async function (titleID) {
 
 const navigate = function () {
   const hashDirectory = window.location.hash.slice(0, 7);
-
+  // If hash is empty(navigating back to home page) show greeting
+  if (hashDirectory === "") return showGreeting();
+  // check for old error message and remove
+  clearSearchErrorMessage();
   // If hash is a search query, get data and render search results
   if (hashDirectory === "#search") {
     const query = window.location.hash.slice(8);
     return navigateToSearchResults(query);
   }
-
   // If hash is a movie ID, get data and render movie details
   if (hashDirectory === "#title/") {
-    const title = window.location.hash.slice(7);
-    return navigateToMovieDetails(title);
+    const titleID = window.location.hash.slice(7);
+    setTimeout(() => {
+      return navigateToMovieDetails(titleID);
+    }, 300);
   }
-
-  // If hash is empty (navigating back to home page) show greeting
-  if (hashDirectory === "") return showGreeting();
 };
 
 searchForm.addEventListener("submit", submitSearch);
