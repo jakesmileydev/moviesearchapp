@@ -107,9 +107,8 @@ const renderSearchResults = function (data) {
       <li class="search-result">
         <a class="search-result__link" href="#title/${result.imdbID}">
           <div class="search-result__img-box">
-            <img class="search-result__img" src=${
-              result.Poster === "N/A" ? "default-poster.webp" : result.Poster
-            }>
+            <img class="search-result__img" src=${result.Poster === "N/A" ? "default-poster.webp" : result.Poster
+      }>
           </div>
           <div class="search-result__info">
             <h3 class="search-result__title">${result.Title}</h3>
@@ -190,10 +189,10 @@ const navigateToMovieDetails = async function (titleID) {
 
 const navigate = function () {
   const hashDirectory = window.location.hash.slice(0, 7);
+  clearSearchErrorMessage();
   // If hash is empty(navigating back to home page) show greeting
   if (hashDirectory === "") return showGreeting();
   // check for old error message and remove
-  clearSearchErrorMessage();
   // If hash is a search query, get data and render search results
   if (hashDirectory === "#search") {
     const query = window.location.hash.slice(8);

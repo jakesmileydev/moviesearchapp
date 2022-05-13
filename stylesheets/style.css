@@ -54,7 +54,7 @@ h1 i {
   transition: transform 0.32s ease;
 }
 .search-form.search-form__welcome {
-  transform: translateY(15rem);
+  transform: translateY(20vh);
 }
 .search-bar {
   width: 100%;
@@ -112,7 +112,7 @@ h1 i {
   transition: transform 0.32s ease, opacity 0.2s;
 }
 .greeting.greeting__welcome {
-  transform: translateY(15rem);
+  transform: translateY(20vh);
 }
 .greeting.greeting__hidden {
   display: none;
