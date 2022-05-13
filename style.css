@@ -35,7 +35,7 @@ header {
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  margin: 2rem 0;
+  margin: 2rem 1rem;
 }
 main {
   margin-top: 3rem;
@@ -179,4 +179,70 @@ h1 i {
   grid-template-columns: 1fr;
   justify-items: center;
   gap: 2rem;
+  margin-bottom: 2rem;
+}
+.search-result {
+  display: flex;
+  justify-content: center;
+  max-width: 80%;
+
+  margin-top: 50%;
+  background-color: #22222b;
+  border-radius: 0.75rem;
+  transition: transform 0.32s ease, opacity 0.32s ease;
+  position: relative;
+}
+.search-result__link {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+}
+
+.search-result::before {
+  content: "";
+  background: linear-gradient(#31323f, #22222b);
+  border-radius: 0.75rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.32s ease;
+}
+.search-result:hover::before {
+  opacity: 1;
+}
+.search-result:hover {
+  transform: translateY(-1.6rem);
+  cursor: pointer;
+}
+.search-result:hover .search-result__img {
+  transform: scale(1.1) rotate(4deg);
+}
+
+.search-result__info {
+  padding: 1.4rem;
+}
+.search-result__img-box {
+  width: 80%;
+  max-width: 300px;
+  margin: -50% auto 0 auto;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.search-result__img {
+  object-fit: cover;
+  transition: all 0.32s ease;
+  width: 100%;
+}
+.search-result__title {
+  font-size: 1.6rem;
+  text-align: center;
+}
+.search-result__year {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 0.6rem;
 }

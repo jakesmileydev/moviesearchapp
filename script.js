@@ -6,7 +6,7 @@ const searchBar = document.querySelector(".search-bar");
 const greeting = document.querySelector(".greeting");
 const content = document.querySelector(".content");
 
-// This value is so the spinner start and greeting fade out don't overlap eachother during ONLY THE FIRST search submission(while the greeting is being hidden), once the removeSpinner function is called, this value will become 0 for subsequent searches
+// This value is so the spinner-start and greeting-fade-out don't overlap
 let spinnerDelay = 375;
 
 const renderSpinner = function () {
@@ -40,14 +40,29 @@ const removeSpinner = function () {
   }, 376);
 };
 
-const findMovie = async function (userQuery) {
+const animateMovieSelection = function (e) {
+  if (!e.target.closest(".search-result__link")) return;
+  const thisMovie = e.target.closest(".search-result__link");
+  thisMovie.style.boxShadow = "0 0 12px #34d399";
+  setTimeout(() => {
+    thisMovie.style.boxShadow = "0 0 6px #34d399";
+  }, 100);
+  setTimeout(() => {
+    thisMovie.style.boxShadow = "";
+  }, 100);
+  setTimeout(() => {
+    thisMovie.style.border = "2px solid #34d399";
+  }, 100);
+};
+
+const searchMovies = async function (userQuery) {
   // Get search results of query from the OMDB API
   let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&type=movie&s=`;
   // Fetch data
   const response = await fetch(`${SEARCH_URL}${userQuery}`);
   // Convert data to json
   const data = await response.json();
-  console.log(data);
+
   return data;
 };
 
@@ -60,9 +75,7 @@ const hideGreeting = function () {
 };
 
 const showGreeting = function () {
-  document.querySelector(".search-results")
-    ? document.querySelector(".search-results").remove()
-    : "";
+  clearSearchResults();
   greeting.classList.remove("greeting__hidden");
   greeting.classList.add("greeting__welcome");
   searchForm.classList.add("search-form__welcome");
@@ -75,9 +88,9 @@ const renderSearchResults = function (data) {
   data.Search.forEach((result) => {
     results += `
       <li class="search-result">
-        <a href="titles/${result.imdbID}">
+        <a class="search-result__link" href="#title/${result.imdbID}">
           <div class="search-result__img-box">
-            <img src=${result.Poster}>
+            <img class="search-result__img" src=${result.Poster}>
           </div>
           <div class="search-result__info">
             <h3 class="search-result__title">${result.Title}</h3>
@@ -95,32 +108,67 @@ const renderSearchResults = function (data) {
   content.insertAdjacentHTML("afterbegin", searchResultsHTML);
 };
 
+const clearSearchResults = function () {
+  document.querySelector(".search-results")
+    ? document.querySelector(".search-results").remove()
+    : "";
+};
+
 const submitSearch = function (e) {
   e.preventDefault();
   const query = searchBarInput.value;
   window.location.hash = `search=${query}`;
 };
 
-const navigate = async function () {
-  const query = window.location.hash.slice(8);
-  searchBarInput.value = query;
-  // If the query is empty (navigating back) return
-  if (query === "") return showGreeting();
+const renderMovieDetails = function (movieData) {
+  console.log(movieData);
+  clearSearchResults();
+};
+
+const navigateToSearchResults = async function (query) {
   // If this is the first search (greeting__welcome class is applied), search bar and arrow slide up, then arrow fades out
   greeting.classList.contains("greeting__hidden") ? "" : hideGreeting();
-  document.querySelector(".search-results")
-    ? document.querySelector(".search-results").remove()
-    : "";
-
+  // Clear search results
+  clearSearchResults();
   // spinner fade in
   renderSpinner();
   // await movie data
-  const data = await findMovie(query);
+  const data = await searchMovies(query);
   // spinner fade out
   removeSpinner();
   // render search results
   renderSearchResults(data);
   // results slide up and fade in
+};
+
+const navigateToMovieDetails = async function (titleID) {
+  let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${titleID}`;
+  clearSearchResults();
+  const response = await fetch(SEARCH_URL);
+  renderSpinner();
+  const data = await response.json();
+  removeSpinner();
+
+  renderMovieDetails(data);
+};
+
+const navigate = function () {
+  const hashDirectory = window.location.hash.slice(0, 7);
+
+  // If hash is a search query, get data and render search results
+  if (hashDirectory === "#search") {
+    const query = window.location.hash.slice(8);
+    return navigateToSearchResults(query);
+  }
+
+  // If hash is a movie ID, get data and render movie details
+  if (hashDirectory === "#title/") {
+    const title = window.location.hash.slice(7);
+    return navigateToMovieDetails(title);
+  }
+
+  // If hash is empty (navigating back to home page) show greeting
+  if (hashDirectory === "") return showGreeting();
 };
 
 searchForm.addEventListener("submit", submitSearch);
@@ -134,3 +182,4 @@ searchBarInput.addEventListener("blur", () => {
 });
 window.addEventListener("hashchange", navigate);
 window.addEventListener("load", navigate);
+content.addEventListener("click", animateMovieSelection);
