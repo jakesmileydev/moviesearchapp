@@ -52,6 +52,8 @@ h1 i {
 .search-form {
   margin: 0 2rem 0 2rem;
   transition: transform 0.32s ease;
+  overflow:hidden;
+  border-radius: .75rem;
 }
 .search-form.search-form__welcome {
   transform: translateY(20vh);
@@ -65,7 +67,7 @@ h1 i {
   border-radius: 0.75rem;
   padding: 0.4rem;
   border: 2px solid transparent;
-  overflow: hidden;
+  
   transition: 0.3s all;
   position: relative;
 }
@@ -90,7 +92,7 @@ h1 i {
   font-size: 1.6rem;
   position: absolute;
   right: -2rem;
-  top: -2.1rem;
+  top: -2.3rem;
   padding: 3rem 3rem 3rem 0.8rem;
   color: #34d399;
   transition: all 0.25s ease;
@@ -195,7 +197,7 @@ h1 i {
 .search-result {
   display: flex;
   justify-content: center;
-  max-width: 80%;
+  width: 80%;
 
   margin-top: 50%;
   background-color: #22222b;
@@ -207,6 +209,7 @@ h1 i {
   width: 100%;
   border-radius: 0.75rem;
   border: 2px solid transparent;
+  height: 100%;
 }
 
 .search-result::before {
@@ -235,6 +238,7 @@ h1 i {
 
 .search-result__info {
   padding: 1rem;
+  
 }
 .search-result__img-box {
   width: 80%;
