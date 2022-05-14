@@ -2,11 +2,12 @@
 colors
 #34D399  main accent
 #15151A  main background
-#F3F3F5  main text
 #22222B  search bar background
+#31323F search bar background__active
 #78869D  accent text
 #86889d  greeting text
-#31323F search bar background__active
+#a4a6b5 accent text on movie__details
+#F3F3F5  main text
 */
 * {
   padding: 0;
@@ -41,9 +42,12 @@ header {
   align-items: center;
   margin: 2rem 1rem;
 }
-
-
-
+h1,
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  line-height: 2.2rem;
+}
 h1 i {
   color: #34d399;
 }
@@ -56,10 +60,10 @@ h1 i {
 /* ///////////////////////////////////// */
 /* Search Bar */
 .search-form {
-  margin: 0 2rem 0 2rem;
+  margin: 0 1rem;
   transition: transform 0.32s ease;
   overflow: hidden;
-  border-radius: .75rem;
+  border-radius: 0.75rem;
 }
 
 .search-form.search-form__welcome {
@@ -220,7 +224,6 @@ h1 i {
   display: flex;
   justify-content: center;
 
-
   margin-top: 40%;
   background-color: #22222b;
   border-radius: 0.75rem;
@@ -265,7 +268,6 @@ h1 i {
 
 .search-result__info {
   padding: 1rem;
-
 }
 
 .search-result__img-box {
@@ -298,4 +300,95 @@ h1 i {
   text-align: center;
   color: #86889d;
   font-size: 1.4rem;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.32s ease;
+}
+.error-message__search.error-message__search__visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ///////////////////////////////////// */
+/* Movie Details */
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50% auto 0 auto;
+  width: calc(100% - 2rem);
+  background-color: #31323f;
+  border-radius: 0.75rem;
+}
+.movie-details__poster-container {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-top: -50%;
+  max-width: 80%;
+}
+.movie-details__poster {
+  width: 100%;
+  object-fit: contain;
+}
+.movie-details__info {
+  padding: 1rem 1.6rem 1.6rem 1.6rem;
+}
+.movie-details__title {
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+}
+.movie-details__subtitle {
+  color: #a4a6b5;
+
+  margin-bottom: 2rem;
+}
+.movie-details__year {
+  margin-right: 2.6rem;
+}
+.movie-details__runtime-genre-rating {
+  color: #a4a6b5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+.movie-details__runtime {
+  border: 1px solid #a4a6b5;
+  padding: 0.2rem 0.4rem;
+}
+.movie-details__rating {
+  color: #34d399;
+  font-size: 1rem;
+}
+.movie-details__actors {
+  font-size: 0.875rem;
+  color: #a4a6b5;
+  margin-bottom: 2rem;
+}
+.movie-details__plot {
+  padding-bottom: 1rem;
+}
+.movie-details__actions {
+  display: flex;
+  justify-content: space-between;
+}
+.movie-details__trailer-button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: #34d399;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2px solid #34d399;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  transition: all 0.32s ease;
+}
+.movie-details__trailer-button:hover {
+  color: white;
+  background-color: #34d399;
+  cursor: pointer;
 }

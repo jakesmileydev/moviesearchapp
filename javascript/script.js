@@ -4,8 +4,9 @@ const searchForm = document.querySelector(".search-form");
 const searchBarInput = document.querySelector(".search-bar__input");
 const searchBar = document.querySelector(".search-bar");
 const content = document.querySelector(".content");
-const greeting = document.querySelector('.greeting');
-const renderSpinner = function () {
+const greeting = document.querySelector(".greeting");
+const renderSpinner = async function () {
+  if (document.querySelector(".spinner")) return;
   const spinnerHTML = `
   <svg class="spinner" viewBox="0 0 50 50">
     <circle
@@ -25,12 +26,11 @@ const renderSpinner = function () {
 
 const removeSpinner = function () {
   document.querySelector(".spinner").classList.remove("spinner__visible");
-  setTimeout(() => {
-    // Remove spinner from DOM
-    document.querySelector(".spinner")
-      ? document.querySelector(".spinner").remove()
-      : "";
-  }, 376);
+
+  // Remove spinner from DOM
+  document.querySelector(".spinner")
+    ? document.querySelector(".spinner").remove()
+    : "";
 };
 
 const animateMovieSelection = function (e) {
@@ -117,36 +117,45 @@ const clearSearchErrorMessages = function () {
   );
   errors
     ? errors.forEach((errorMessage) => {
-      errorMessage.remove();
-    })
+        errorMessage.remove();
+      })
     : "";
 };
-const renderSearchError = function () {
+const renderSearchError = async function () {
   // fixes bug when navigating quickly to home renders a search error
   if (window.location.hash === "") return;
+  // If an error already exists, don't render another one
   if (document.querySelector(".error-message__search")) return;
+
   console.log("creating search error");
   content.insertAdjacentHTML(
     "afterbegin",
-    `<div class="error-message__search error-message__search__visible">We couldn't find any movies matching that title. <br> Please try again :)</div>`
+    `<div class="error-message__search">We couldn't find any movies matching that title. <br> Please try again :)</div>`
   );
+  await wait(10);
   document
     .querySelector(".error-message__search")
-    .classList.add("error-message__search__hidden");
+    .classList.add("error-message__search__visible");
 };
-const renderSearchResults = function (data) {
-  let results = "";
+
+const renderSearchResults = async function (data) {
+  // Next two lines fix bugs where navigating with browser buttons too fast renders unwanted search results or search error
+  clearSearchErrorMessages();
+  if (window.location.hash === "") return;
+  // If no data was returned from API, render search error instead
   if (!data.Search) return renderSearchError();
 
+  let results = "";
   data.Search.forEach((result) => {
     results += `
       <li class="search-result">
         <a class="search-result__link" href="#title/${result.imdbID}">
           <div class="search-result__img-box">
-            <img class="search-result__img" src=${result.Poster === "N/A"
-        ? "/images/default-poster.webp"
-        : result.Poster
-      }>
+            <img class="search-result__img" src=${
+              result.Poster === "N/A"
+                ? "/images/default-poster.webp"
+                : result.Poster
+            }>
           </div>
           <div class="search-result__info">
             <h3 class="search-result__title">${result.Title}</h3>
@@ -176,20 +185,30 @@ const renderMovieDetails = function (movieData) {
   const movieDetailsHTML = `
     <div class="movie-details">
       <div class="movie-details__poster-container">
-        <img class="movie-details__poster" src=${movieData.Poster === "N/A"
-      ? "/images/default-poster.webp"
-      : movieData.Poster
-    }>
+        <img class="movie-details__poster" src=${
+          movieData.Poster === "N/A"
+            ? "/images/default-poster.webp"
+            : movieData.Poster
+        }>
       </div>
-      <div class="movie-details__info>
+      <div class="movie-details__info">
         <h3 class="movie-details__title">${movieData.Title}</h3>
         <div class="movie-details__subtitle">
-          <p class="movie-details__year">${movieData.Year}</p>
-          <p class="movie-details__director">${movieData.Director}</p>
+          <span class="movie-details__year">${movieData.Year}</span>
+          <span class="movie-details__director">${movieData.Director}</span>
         </div>
         <div class="movie-details__runtime-genre-rating">
-          <p class="movie-details__runtime">${movieData.Runtime}</p>
-          <p class="movie-details__genre">${movieData.Genre}</p>
+          <span class="movie-details__runtime">${movieData.Runtime}</span>
+          <span class="movie-details__genre">${movieData.Genre}</span>
+          <span class="movie-details__rating">${movieData.imdbRating}</span>
+        </div>
+        <p class="movie-details__plot">${movieData.Plot}</p>
+        <div class="movie-details__actors">${movieData.Actors}</div>
+        <div class="movie-details__actions">
+          <button class="movie-details__trailer-button"><i class="ph-play"></i> WATCH TRAILER</button>
+          <button class="movie-details__share-button" dataset.title="${
+            movieData.title
+          }"><i class="ph-share-network"></i></button>
         </div>
       </div>
     </div>
@@ -206,38 +225,30 @@ const addQueryToSearchBar = function (query) {
   searchBarInput.value = query.split(search).join(replace);
 };
 
-// this function accepts the query from the url
+// This function accepts a query from the url
 const navigateToSearchResults = async function (query) {
   // Fill in the search bar text with current query (swap '%20' from url with ' ')
   addQueryToSearchBar(query);
-  // Clear search results
-
-  // spinner fade in
   renderSpinner();
-  // await movie data
+  await wait(280);
   const data = await searchMovies(query);
-  // spinner fade out
   removeSpinner();
-  // render search results
   renderSearchResults(data);
   // waiting for old results to fade out
-  await wait(320);
+  await wait(120);
   // if there are results, make them visible
-  document.querySelector(".search-results")
-    ? document
+  if (document.querySelector(".search-results"))
+    document
       .querySelector(".search-results")
-      .classList.add("search-results__fade-in")
-    : "";
+      .classList.add("search-results__fade-in");
 };
 
 const navigateToMovieDetails = async function (titleID) {
   let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${titleID}`;
-
   renderSpinner();
   const response = await fetch(SEARCH_URL);
   const data = await response.json();
   removeSpinner();
-
   renderMovieDetails(data);
 };
 
