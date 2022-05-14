@@ -14,9 +14,11 @@ colors
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
 ul {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -27,9 +29,11 @@ body {
   height: calc(100vh -38px);
   color: #f3f3f5;
 }
+
 header {
   text-align: center;
 }
+
 .site-header {
   display: flex;
   justify-content: center;
@@ -37,27 +41,31 @@ header {
   align-items: center;
   margin: 2rem 1rem;
 }
-main {
-  margin-top: 3rem;
-}
+
+
+
 h1 i {
   color: #34d399;
 }
+
 .container {
   max-width: 80rem;
   margin: 0 auto;
 }
+
 /* ///////////////////////////////////// */
 /* Search Bar */
 .search-form {
   margin: 0 2rem 0 2rem;
   transition: transform 0.32s ease;
-  overflow:hidden;
+  overflow: hidden;
   border-radius: .75rem;
 }
+
 .search-form.search-form__welcome {
   transform: translateY(20vh);
 }
+
 .search-bar {
   width: 100%;
   background-color: #22222b;
@@ -67,10 +75,11 @@ h1 i {
   border-radius: 0.75rem;
   padding: 0.4rem;
   border: 2px solid transparent;
-  
+
   transition: 0.3s all;
   position: relative;
 }
+
 .search-bar.search-bar__active {
   border: 2px solid #34d399;
   background-color: #31323f;
@@ -85,6 +94,7 @@ h1 i {
   font-size: 1.4rem;
   color: #f3f3f5;
 }
+
 .search-bar__button {
   background: transparent;
   border: none;
@@ -97,6 +107,7 @@ h1 i {
   color: #34d399;
   transition: all 0.25s ease;
 }
+
 .search-bar__button:hover {
   cursor: pointer;
   color: white;
@@ -113,16 +124,20 @@ h1 i {
   margin-top: 1rem;
   transition: transform 0.32s ease, opacity 0.2s;
 }
+
 .greeting.greeting__welcome {
   transform: translateY(20vh);
 }
+
 .greeting.greeting__hidden {
   display: none;
   opacity: 0;
 }
+
 .greeting__arrow {
   width: 6rem;
 }
+
 .greeting__text {
   font-family: "Gloria Hallelujah", cursive;
   font-size: 1.6rem;
@@ -145,9 +160,11 @@ h1 i {
   opacity: 0;
   transition: all 0.2s ease;
 }
+
 .spinner.spinner__visible {
   opacity: 1;
 }
+
 .path {
   stroke: #34d399;
   stroke-linecap: round;
@@ -165,10 +182,12 @@ h1 i {
     stroke-dasharray: 1, 150;
     stroke-dashoffset: 0;
   }
+
   50% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -35;
   }
+
   100% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -124;
@@ -187,26 +206,31 @@ h1 i {
   opacity: 0;
   transform: translateY(4rem);
 }
+
 .search-results.search-results__fade-in {
   opacity: 1;
   transform: translateY(0);
 }
+
 .search-results.search-results__fade-out {
   opacity: 0;
 }
+
 .search-result {
   display: flex;
   justify-content: center;
-  width: 80%;
 
-  margin-top: 50%;
+
+  margin-top: 40%;
   background-color: #22222b;
   border-radius: 0.75rem;
   transition: transform 0.32s ease, opacity 0.32s ease;
   position: relative;
 }
+
 .search-result__link {
   width: 100%;
+  max-width: 18rem;
   border-radius: 0.75rem;
   border: 2px solid transparent;
   height: 100%;
@@ -225,42 +249,50 @@ h1 i {
   opacity: 0;
   transition: all 0.32s ease;
 }
+
 .search-result:hover::before {
   opacity: 1;
 }
+
 .search-result:hover {
   transform: translateY(-1.6rem);
   cursor: pointer;
 }
+
 .search-result:hover .search-result__img {
   transform: scale(1.1) rotate(4deg);
 }
 
 .search-result__info {
   padding: 1rem;
-  
+
 }
+
 .search-result__img-box {
   width: 80%;
-  max-width: 200px;
+  max-width: 16rem;
   margin: -50% auto 0 auto;
   border-radius: 0.75rem;
   overflow: hidden;
 }
+
 .search-result__img {
   object-fit: cover;
   transition: all 0.32s ease;
   width: 100%;
 }
+
 .search-result__title {
   font-size: 1.4rem;
   text-align: center;
 }
+
 .search-result__year {
   font-size: 1.2rem;
   text-align: center;
   margin-top: 0.6rem;
 }
+
 .error-message__search {
   font-family: "Gloria Hallelujah", cursive;
   text-align: center;
