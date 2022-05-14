@@ -208,7 +208,9 @@ const renderMovieDetails = async function (movieData) {
           <span class="movie-details__director">${movieData.Director}</span>
         </div>
         <div class="movie-details__runtime-genre-rating">
-          <span class="movie-details__runtime">${movieData.Runtime}</span>
+          <span class="movie-details__runtime">${movieData.Runtime.split(
+            " "
+          ).join("&nbsp;")}</span>
           <span class="movie-details__genre">${movieData.Genre}</span>
           <div class="movie-details__rating-container">
             <svg class="movie-details__rating-circle" width="40" height="40">
