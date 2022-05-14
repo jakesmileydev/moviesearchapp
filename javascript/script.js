@@ -7,6 +7,7 @@ const content = document.querySelector(".content");
 const greeting = document.querySelector(".greeting");
 const renderSpinner = async function () {
   if (document.querySelector(".spinner")) return;
+
   const spinnerHTML = `
   <svg class="spinner" viewBox="0 0 50 50">
     <circle
@@ -24,9 +25,10 @@ const renderSpinner = async function () {
   document.querySelector(".spinner").classList.add("spinner__visible");
 };
 
-const removeSpinner = async function () {
+const removeSpinner = function () {
+  if (!document.querySelector(".spinner")) return;
   document.querySelector(".spinner").classList.remove("spinner__visible");
-  await wait(320);
+
   // Remove spinner from DOM
   document.querySelector(".spinner")
     ? document.querySelector(".spinner").remove()
@@ -95,11 +97,14 @@ const clearSearchResults = async function () {
     searchResults.forEach((result) => result.remove());
   }
 };
-const showGreeting = async function () {
-  clearSearchErrorMessages();
 
+const clearAllExistingContent = function () {
+  clearSearchErrorMessages();
   clearSearchResults();
   clearMovieDetails();
+};
+const showGreeting = async function () {
+  clearAllExistingContent();
   clearSearchBarInputValue();
   greeting.style.display = "flex";
   await wait(320);
@@ -139,9 +144,11 @@ const renderSearchError = async function () {
 };
 
 const renderSearchResults = async function (data) {
-  // Next two lines fix bugs where navigating with browser buttons too fast renders unwanted search results or search error
-  clearSearchErrorMessages();
-  if (window.location.hash === "") return;
+  // Next three lines fix bugs where navigating with browser buttons too fast renders unwanted search results or search error
+  clearAllExistingContent();
+  if (!window.location.hash.includes("search")) return;
+
+  console.log("inside renderSearchResults()");
   // If no data was returned from API, render search error instead
   if (!data.Search) return renderSearchError();
 
@@ -180,7 +187,10 @@ const submitSearch = function (e) {
 };
 
 const renderMovieDetails = async function (movieData) {
-  console.log(movieData);
+  // Fixes navigation bug
+  clearAllExistingContent();
+  if (!window.location.hash.includes("title")) return;
+  console.log("inside renderMovieDetails()");
 
   const movieDetailsHTML = `
     <div class="movie-details movie-details__hidden">
@@ -200,7 +210,19 @@ const renderMovieDetails = async function (movieData) {
         <div class="movie-details__runtime-genre-rating">
           <span class="movie-details__runtime">${movieData.Runtime}</span>
           <span class="movie-details__genre">${movieData.Genre}</span>
-          <span class="movie-details__rating">${movieData.imdbRating}</span>
+          <div class="movie-details__rating-container">
+            <svg class="movie-details__rating-circle" width="40" height="40">
+              <circle stroke="#585A70" fill="transparent" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: 29.4053;">
+              </circle>
+              <circle stroke="#34D399" fill="transparent" stroke-dasharray="113.09733552923255" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: ${
+                113.09733 - movieData.imdbRating * 10 * 1.13097
+              };">
+              </circle>
+            </svg>
+            <span class="movie-details__rating-text">
+              ${movieData.imdbRating}
+            </span>
+          </div>
         </div>
         <p class="movie-details__plot">${movieData.Plot}</p>
         <div class="movie-details__actors">${movieData.Actors}</div>
@@ -233,6 +255,7 @@ const addQueryToSearchBar = function (query) {
 const navigateToSearchResults = async function (query) {
   // Fill in the search bar text with current query (swap '%20' from url with ' ')
   addQueryToSearchBar(query);
+  await wait(200);
   renderSpinner();
   await wait(280);
   const data = await searchMovies(query);
@@ -249,9 +272,9 @@ const navigateToSearchResults = async function (query) {
 
 const navigateToMovieDetails = async function (titleID) {
   let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${titleID}`;
+  await wait(200);
   renderSpinner();
   await wait(280);
-
   const response = await fetch(SEARCH_URL);
   const data = await response.json();
   removeSpinner();
@@ -259,12 +282,9 @@ const navigateToMovieDetails = async function (titleID) {
 };
 
 const navigate = async function () {
-  const hashDirectory = window.location.hash.slice(0, 7);
-  // check for old error message and remove
+  clearAllExistingContent();
 
-  clearSearchErrorMessages();
-  if (document.querySelector(".movie-details")) await clearMovieDetails();
-  if (document.querySelector(".search-results")) await clearSearchResults();
+  const hashDirectory = window.location.hash.slice(0, 7);
   // If hash is empty(navigating back to home page) show greeting
   if (hashDirectory === "") return showGreeting();
   // If this is the first search (greeting__welcome class is applied), search bar and arrow slide up, then arrow fades out, wait additional time for animations to finish (.32s)

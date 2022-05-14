@@ -146,7 +146,7 @@ h1 i {
   font-family: "Gloria Hallelujah", cursive;
   font-size: 1.6rem;
   text-align: center;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   color: #86889d;
 }
 
@@ -368,10 +368,20 @@ h1 i {
   border: 1px solid #a4a6b5;
   padding: 0.2rem 0.4rem;
 }
-.movie-details__rating {
+.movie-details__rating-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 0.2rem;
+  padding-right: 0.1rem;
+}
+.movie-details__rating-container {
   margin-left: auto;
-  color: #34d399;
-  font-size: 1rem;
+  position: relative;
+}
+.movie-details__rating-circle {
+  transform: rotate(-90deg);
 }
 .movie-details__actors {
   font-size: 0.875rem;
