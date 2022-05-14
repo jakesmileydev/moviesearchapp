@@ -316,18 +316,28 @@ h1 i {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50% auto 0 auto;
+  margin: 50% auto 1rem auto;
   width: calc(100% - 2rem);
   background-color: #31323f;
   border-radius: 0.75rem;
+
+  transition: all 0.32s ease;
+  opacity: 1;
+  transform: translateY(0rem);
+}
+.movie-details.movie-details__hidden {
+  opacity: 0;
+  transform: translateY(4rem);
+}
+.movie-details.movie-details__fade-out {
+  opacity: 0;
 }
 .movie-details__poster-container {
-  border-radius: 0.75rem;
-  overflow: hidden;
   margin-top: -50%;
   max-width: 80%;
 }
 .movie-details__poster {
+  border-radius: 0.75rem;
   width: 100%;
   object-fit: contain;
 }
@@ -349,7 +359,7 @@ h1 i {
 .movie-details__runtime-genre-rating {
   color: #a4a6b5;
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   align-items: center;
   margin-bottom: 1rem;
   font-size: 0.875rem;
@@ -359,6 +369,7 @@ h1 i {
   padding: 0.2rem 0.4rem;
 }
 .movie-details__rating {
+  margin-left: auto;
   color: #34d399;
   font-size: 1rem;
 }
@@ -373,6 +384,7 @@ h1 i {
 .movie-details__actions {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .movie-details__trailer-button {
   display: flex;
@@ -390,5 +402,17 @@ h1 i {
 .movie-details__trailer-button:hover {
   color: white;
   background-color: #34d399;
+  cursor: pointer;
+}
+.movie-details__share-button {
+  background: transparent;
+  border: none;
+  color: #a4a6b5;
+  font-size: 1.2rem;
+  padding: 0.25rem;
+  transition: all 0.32s ease;
+}
+.movie-details__share-button:hover {
+  color: #34d399;
   cursor: pointer;
 }

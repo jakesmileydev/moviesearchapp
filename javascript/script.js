@@ -24,9 +24,9 @@ const renderSpinner = async function () {
   document.querySelector(".spinner").classList.add("spinner__visible");
 };
 
-const removeSpinner = function () {
+const removeSpinner = async function () {
   document.querySelector(".spinner").classList.remove("spinner__visible");
-
+  await wait(320);
   // Remove spinner from DOM
   document.querySelector(".spinner")
     ? document.querySelector(".spinner").remove()
@@ -77,8 +77,8 @@ const clearMovieDetails = async function () {
   const movieDetails = document.querySelector(".movie-details");
   if (movieDetails) {
     movieDetails.classList.add("movie-details__fade-out");
-    await wait(320);
 
+    await wait(320);
     movieDetails.remove();
   }
 };
@@ -179,11 +179,11 @@ const submitSearch = function (e) {
   window.location.hash = `search=${query}`;
 };
 
-const renderMovieDetails = function (movieData) {
+const renderMovieDetails = async function (movieData) {
   console.log(movieData);
 
   const movieDetailsHTML = `
-    <div class="movie-details">
+    <div class="movie-details movie-details__hidden">
       <div class="movie-details__poster-container">
         <img class="movie-details__poster" src=${
           movieData.Poster === "N/A"
@@ -214,6 +214,10 @@ const renderMovieDetails = function (movieData) {
     </div>
   `;
   content.insertAdjacentHTML("afterbegin", movieDetailsHTML);
+  await wait(120);
+  document
+    .querySelector(".movie-details")
+    .classList.remove("movie-details__hidden");
 };
 
 const wait = (timeToDelay) =>
@@ -246,6 +250,8 @@ const navigateToSearchResults = async function (query) {
 const navigateToMovieDetails = async function (titleID) {
   let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${titleID}`;
   renderSpinner();
+  await wait(280);
+
   const response = await fetch(SEARCH_URL);
   const data = await response.json();
   removeSpinner();
