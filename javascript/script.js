@@ -190,7 +190,6 @@ const renderMovieDetails = async function (movieData) {
   // Fixes navigation bug
   clearAllExistingContent();
   if (!window.location.hash.includes("title")) return;
-  console.log("inside renderMovieDetails()");
 
   const movieDetailsHTML = `
     <div class="movie-details movie-details__hidden">
@@ -240,6 +239,25 @@ const renderMovieDetails = async function (movieData) {
     .querySelector(".movie-details")
     .classList.remove("movie-details__hidden");
 };
+const copyLinkToClipboard = function (e) {
+
+  if (!e.target.closest('.movie-details__share-button')) return;
+  navigator.clipboard.writeText(window.location).then(function () {
+    const shareButton = document.querySelector('.movie-details__share-button');
+    shareButton.classList.add('movie-details__share-button__success');
+
+    setTimeout(() => {
+      shareButton.classList.remove('movie-details__share-button__success');
+    }, 1000);
+  }, function () {
+    console.log('Error, clipboard.writeText(window.location) failed');
+  });
+
+}
+const handleContentClick = function (e) {
+  animateMovieSelection(e);
+  copyLinkToClipboard(e);
+}
 
 const wait = (timeToDelay) =>
   new Promise((resolve) => setTimeout(resolve, timeToDelay));
@@ -314,4 +332,4 @@ searchBarInput.addEventListener("blur", () => {
 });
 window.addEventListener("hashchange", navigate);
 window.addEventListener("load", navigate);
-content.addEventListener("click", animateMovieSelection);
+content.addEventListener("click", handleContentClick);

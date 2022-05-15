@@ -383,6 +383,7 @@ h1 i {
   font-size: 0.875rem;
 }
 
+
 .movie-details__runtime {
   border: 1px solid #a4a6b5;
   padding: 0.2rem 0.4rem;
@@ -443,13 +444,36 @@ h1 i {
 }
 
 .movie-details__share-button {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
   background: transparent;
   border: none;
   color: #a4a6b5;
   font-size: 1.2rem;
   padding: 0.25rem;
   transition: all 0.32s ease;
+  position: relative;
 }
+
+.movie-details__share-button::before {
+  position: absolute;
+  top: -130%;
+  left: -30%;
+
+  content: "Link Copied!";
+  color: #34d399;
+  font-size: .8rem;
+  opacity: 0;
+  transition: all .32s ease;
+
+}
+
+.movie-details__share-button__success.movie-details__share-button::before {
+  opacity: 1;
+}
+
+
 
 .movie-details__share-button:hover {
   color: #34d399;
