@@ -226,9 +226,9 @@ const renderMovieDetails = async function (movieData) {
         <p class="movie-details__plot">${movieData.Plot}</p>
         <div class="movie-details__actors">${movieData.Actors}</div>
         <div class="movie-details__actions">
-          <button class="movie-details__trailer-button"><i class="ph-play"></i> WATCH TRAILER</button>
-          <button class="movie-details__share-button" dataset.title="${movieData.title
-    }"><i class="ph-share-network"></i></button>
+          <button class="movie-details__trailer-button" data-year="${movieData.Year}" data-title="${movieData.Title
+    }"><i class="ph-play"></i> WATCH TRAILER</button>
+          <button class="movie-details__share-button" ><i class="ph-share-network"></i></button>
         </div>
       </div>
     </div>
@@ -254,9 +254,38 @@ const copyLinkToClipboard = function (e) {
   });
 
 }
+const openTrailerModal = function (e) {
+  if (!e.target.closest('.movie-details__trailer-button')) return;
+  console.log(e.target.dataset)
+  const year = e.target.dataset.year;
+  const title = e.target.dataset.title;
+  console.log(year);
+  console.log(title);
+  const modalHTML = `
+        <div class="modal">
+          <div class="modal-background">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title">${title}<span class="modal-Year">(${year})</span></h3>
+                <button class="modal-button__close"><i class="ph-x"></i></button>
+              </div>
+              <div class="player"></div>
+            </div>
+          </div>
+        </div>
+  `;
+  content.insertAdjacentHTML('afterbegin', modalHTML);
+  document.querySelector('.modal').classList.add('modal__visible');
+}
+const closeTrailerModal = function (e) {
+  if (!e.target.closest('.modal-button__close')) return;
+  document.querySelector('.modal').classList.remove('modal__visible')
+}
 const handleContentClick = function (e) {
   animateMovieSelection(e);
   copyLinkToClipboard(e);
+  openTrailerModal(e);
+  closeTrailerModal(e)
 }
 
 const wait = (timeToDelay) =>
