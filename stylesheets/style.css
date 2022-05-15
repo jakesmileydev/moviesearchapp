@@ -1,13 +1,13 @@
 /* 
 colors
-#34D399  main accent
-#15151A  main background
-#22222B  search bar background
+#34D399 main accent
+#15151A main background
+#22222B search bar background
 #31323F search bar background__active
-#78869D  accent text
-#86889d  greeting text
+#78869D accent text
+#86889d greeting text
 #a4a6b5 accent text on movie__details
-#F3F3F5  main text
+#F3F3F5 main text
 */
 * {
   padding: 0;
@@ -42,12 +42,14 @@ header {
   align-items: center;
   margin: 2rem 1rem;
 }
+
 h1,
 h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   line-height: 2.2rem;
 }
+
 h1 i {
   color: #34d399;
 }
@@ -126,7 +128,7 @@ h1 i {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
-  transition: transform 0.32s ease, opacity 0.2s;
+  transition: all .32s ease;
 }
 
 .greeting.greeting__welcome {
@@ -156,7 +158,7 @@ h1 i {
   animation: rotate 2s linear infinite;
   z-index: 2;
   position: absolute;
-  top: 25%;
+  top: 12rem;
   left: 50%;
   margin: -25px 0 0 -25px;
   width: 50px;
@@ -204,6 +206,7 @@ h1 i {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
+  margin-top: 2rem;
   gap: 2rem;
   margin-bottom: 2rem;
   transition: all 0.3s ease;
@@ -223,11 +226,10 @@ h1 i {
 .search-result {
   display: flex;
   justify-content: center;
-
-  margin-top: 40%;
+  margin-top: 8rem;
   background-color: #22222b;
   border-radius: 0.75rem;
-  transition: transform 0.32s ease, opacity 0.32s ease;
+  transition: all 0.32s ease;
   position: relative;
 }
 
@@ -258,8 +260,9 @@ h1 i {
 }
 
 .search-result:hover {
-  transform: translateY(-1.6rem);
+  transform: translateY(-1.4rem);
   cursor: pointer;
+  box-shadow: 0px 10px 13px -7px #02020293;
 }
 
 .search-result:hover .search-result__img {
@@ -268,17 +271,20 @@ h1 i {
 
 .search-result__info {
   padding: 1rem;
+  margin-top: -8rem;
 }
 
 .search-result__img-box {
   width: 80%;
   max-width: 16rem;
-  margin: -50% auto 0 auto;
+  margin: 0 auto 0 auto;
   border-radius: 0.75rem;
   overflow: hidden;
+  transform: translateY(-8rem);
 }
 
 .search-result__img {
+  min-height: 12rem;
   object-fit: cover;
   transition: all 0.32s ease;
   width: 100%;
@@ -305,6 +311,7 @@ h1 i {
   transform: translateY(2rem);
   transition: all 0.32s ease;
 }
+
 .error-message__search.error-message__search__visible {
   opacity: 1;
   transform: translateY(0);
@@ -316,7 +323,7 @@ h1 i {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50% auto 1rem auto;
+  margin: 10rem auto 1rem auto;
   width: calc(100% - 2rem);
   background-color: #31323f;
   border-radius: 0.75rem;
@@ -325,37 +332,48 @@ h1 i {
   opacity: 1;
   transform: translateY(0rem);
 }
+
 .movie-details.movie-details__hidden {
   opacity: 0;
   transform: translateY(4rem);
 }
+
 .movie-details.movie-details__fade-out {
   opacity: 0;
 }
+
 .movie-details__poster-container {
-  margin-top: -50%;
+  transform: translateY(-8rem);
   max-width: 80%;
 }
+
 .movie-details__poster {
+  min-height: 12rem;
   border-radius: 0.75rem;
   width: 100%;
   object-fit: contain;
 }
+
 .movie-details__info {
   padding: 1rem 1.6rem 1.6rem 1.6rem;
+  margin-top: -8rem;
 }
+
 .movie-details__title {
   font-size: 2rem;
   margin-bottom: 0.6rem;
 }
+
 .movie-details__subtitle {
   color: #a4a6b5;
 
   margin-bottom: 2rem;
 }
+
 .movie-details__year {
   margin-right: 2.6rem;
 }
+
 .movie-details__runtime-genre-rating {
   color: #a4a6b5;
   display: flex;
@@ -364,10 +382,12 @@ h1 i {
   margin-bottom: 1rem;
   font-size: 0.875rem;
 }
+
 .movie-details__runtime {
   border: 1px solid #a4a6b5;
   padding: 0.2rem 0.4rem;
 }
+
 .movie-details__rating-text {
   position: absolute;
   top: 50%;
@@ -376,26 +396,32 @@ h1 i {
   padding-bottom: 0.2rem;
   padding-right: 0.1rem;
 }
+
 .movie-details__rating-container {
   margin-left: auto;
   position: relative;
 }
+
 .movie-details__rating-circle {
   transform: rotate(-90deg);
 }
+
 .movie-details__actors {
   font-size: 0.875rem;
   color: #a4a6b5;
   margin-bottom: 2rem;
 }
+
 .movie-details__plot {
   padding-bottom: 1rem;
 }
+
 .movie-details__actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .movie-details__trailer-button {
   display: flex;
   align-items: center;
@@ -409,11 +435,13 @@ h1 i {
   border-radius: 0.75rem;
   transition: all 0.32s ease;
 }
+
 .movie-details__trailer-button:hover {
   color: white;
   background-color: #34d399;
   cursor: pointer;
 }
+
 .movie-details__share-button {
   background: transparent;
   border: none;
@@ -422,6 +450,7 @@ h1 i {
   padding: 0.25rem;
   transition: all 0.32s ease;
 }
+
 .movie-details__share-button:hover {
   color: #34d399;
   cursor: pointer;

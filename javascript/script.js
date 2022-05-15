@@ -5,6 +5,7 @@ const searchBarInput = document.querySelector(".search-bar__input");
 const searchBar = document.querySelector(".search-bar");
 const content = document.querySelector(".content");
 const greeting = document.querySelector(".greeting");
+
 const renderSpinner = async function () {
   if (document.querySelector(".spinner")) return;
 
@@ -122,8 +123,8 @@ const clearSearchErrorMessages = function () {
   );
   errors
     ? errors.forEach((errorMessage) => {
-        errorMessage.remove();
-      })
+      errorMessage.remove();
+    })
     : "";
 };
 const renderSearchError = async function () {
@@ -149,7 +150,7 @@ const renderSearchResults = async function (data) {
   if (!window.location.hash.includes("search")) return;
 
   console.log("inside renderSearchResults()");
-  // If no data was returned from API, render search error instead
+  // If no movie data was returned from API, render search error instead
   if (!data.Search) return renderSearchError();
 
   let results = "";
@@ -158,11 +159,10 @@ const renderSearchResults = async function (data) {
       <li class="search-result">
         <a class="search-result__link" href="#title/${result.imdbID}">
           <div class="search-result__img-box">
-            <img class="search-result__img" src=${
-              result.Poster === "N/A"
-                ? "/images/default-poster.webp"
-                : result.Poster
-            }>
+            <img class="search-result__img" src=${result.Poster === "N/A"
+        ? "/images/default-poster.webp"
+        : result.Poster
+      }>
           </div>
           <div class="search-result__info">
             <h3 class="search-result__title">${result.Title}</h3>
@@ -195,11 +195,10 @@ const renderMovieDetails = async function (movieData) {
   const movieDetailsHTML = `
     <div class="movie-details movie-details__hidden">
       <div class="movie-details__poster-container">
-        <img class="movie-details__poster" src=${
-          movieData.Poster === "N/A"
-            ? "/images/default-poster.webp"
-            : movieData.Poster
-        }>
+        <img class="movie-details__poster" src=${movieData.Poster === "N/A"
+      ? "/images/default-poster.webp"
+      : movieData.Poster
+    }>
       </div>
       <div class="movie-details__info">
         <h3 class="movie-details__title">${movieData.Title}</h3>
@@ -209,16 +208,15 @@ const renderMovieDetails = async function (movieData) {
         </div>
         <div class="movie-details__runtime-genre-rating">
           <span class="movie-details__runtime">${movieData.Runtime.split(
-            " "
-          ).join("&nbsp;")}</span>
+      " "
+    ).join("&nbsp;")}</span>
           <span class="movie-details__genre">${movieData.Genre}</span>
           <div class="movie-details__rating-container">
             <svg class="movie-details__rating-circle" width="40" height="40">
               <circle stroke="#585A70" fill="transparent" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: 29.4053;">
               </circle>
-              <circle stroke="#34D399" fill="transparent" stroke-dasharray="113.09733552923255" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: ${
-                113.09733 - movieData.imdbRating * 10 * 1.13097
-              };">
+              <circle stroke="#34D399" fill="transparent" stroke-dasharray="113.09733552923255" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: ${113.09733 - movieData.imdbRating * 10 * 1.13097
+    };">
               </circle>
             </svg>
             <span class="movie-details__rating-text">
@@ -230,9 +228,8 @@ const renderMovieDetails = async function (movieData) {
         <div class="movie-details__actors">${movieData.Actors}</div>
         <div class="movie-details__actions">
           <button class="movie-details__trailer-button"><i class="ph-play"></i> WATCH TRAILER</button>
-          <button class="movie-details__share-button" dataset.title="${
-            movieData.title
-          }"><i class="ph-share-network"></i></button>
+          <button class="movie-details__share-button" dataset.title="${movieData.title
+    }"><i class="ph-share-network"></i></button>
         </div>
       </div>
     </div>
