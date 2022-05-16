@@ -128,7 +128,7 @@ h1 i {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
-  transition: all .32s ease;
+  transition: all 0.32s ease;
 }
 
 .greeting.greeting__welcome {
@@ -383,7 +383,6 @@ h1 i {
   font-size: 0.875rem;
 }
 
-
 .movie-details__runtime {
   border: 1px solid #a4a6b5;
   padding: 0.2rem 0.4rem;
@@ -446,7 +445,7 @@ h1 i {
 .movie-details__share-button {
   display: flex;
   align-items: center;
-  gap: .6rem;
+  gap: 0.6rem;
   background: transparent;
   border: none;
   color: #a4a6b5;
@@ -463,17 +462,14 @@ h1 i {
 
   content: "Link Copied!";
   color: #34d399;
-  font-size: .8rem;
+  font-size: 0.8rem;
   opacity: 0;
-  transition: all .32s ease;
-
+  transition: all 0.32s ease;
 }
 
 .movie-details__share-button__success.movie-details__share-button::before {
   opacity: 1;
 }
-
-
 
 .movie-details__share-button:hover {
   color: #34d399;
@@ -486,25 +482,15 @@ h1 i {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.63);
   opacity: 0;
-  transition: all .32s ease;
+  transition: all 0.32s ease;
 }
 
-.modal.modal__visibile {
+.modal.modal__visible {
   opacity: 1;
-}
-
-.modal-background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  background-color: #000000bf;
 }
 
 .modal-content {
@@ -513,7 +499,45 @@ h1 i {
   left: 50%;
   transform: translate(-50%, -56%);
   width: 90%;
-  max-width: 53.75rem;
+  max-width: 60rem;
   padding: 1rem;
   background-color: #31323f;
+  border-radius: 0.75rem;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.modal-year {
+  margin-left: 0.4rem;
+}
+.modal-button__close {
+  display: flex;
+  align-items: center;
+  color: #34d399;
+  background: none;
+  font-size: 1.4rem;
+  border: none;
+  transition: all 0.32s ease;
+}
+.modal-button__close:hover {
+  color: #a4a6b5;
+  cursor: pointer;
+}
+.iframe-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
