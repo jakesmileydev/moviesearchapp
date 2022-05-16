@@ -24,11 +24,17 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+html {
+  min-height: 100%;
+  position: relative;
+}
 body {
   background: #15151a;
-  height: calc(100vh -38px);
+
   color: #f3f3f5;
+}
+.content {
+  margin-bottom: 10rem;
 }
 
 header {
@@ -545,11 +551,14 @@ h1 i {
 /* Footer */
 
 footer {
-  position: fixed;
+  color: #a4a6b5;
+  position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #a4a6b5;
+  margin-bottom: 2rem;
+  /* so modal covers it */
+  z-index: -1;
 }
 .footer-text {
   text-align: center;
