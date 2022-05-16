@@ -1,0 +1,10 @@
+@media (min-width: 600px) {
+  .search-results {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 900px) {
+  .search-results {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

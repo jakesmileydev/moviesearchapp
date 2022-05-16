@@ -1,6 +1,3 @@
-const API_KEY = "32889f53";
-const YOUTUBE_API_KEY = "AIzaSyCAc87X2u1hqNu421_TvzJxEDPu8nZLCjQ";
-
 const searchForm = document.querySelector(".search-form");
 const searchBarInput = document.querySelector(".search-bar__input");
 const searchBar = document.querySelector(".search-bar");
@@ -11,7 +8,7 @@ const renderSpinner = async function () {
   if (document.querySelector(".spinner")) return;
 
   const spinnerHTML = `
-  <svg class="spinner" viewBox="0 0 50 50">
+  <svg class="spinner" viewBox="0 0 50 50"> 
     <circle
       class="path"
       cx="25"

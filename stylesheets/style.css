@@ -327,7 +327,7 @@ h1 i {
   width: calc(100% - 2rem);
   background-color: #31323f;
   border-radius: 0.75rem;
-
+  max-width: 40rem;
   transition: all 0.32s ease;
   opacity: 1;
   transform: translateY(0rem);
