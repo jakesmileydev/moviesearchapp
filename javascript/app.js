@@ -26,17 +26,17 @@ const navigate = async function () {
   const hashDirectory = window.location.hash.slice(0, 7);
   // If hash is empty(navigating back to home page) show greeting
   if (hashDirectory === "") return showGreeting();
-  // If this is the first search (greeting__welcome class is applied), search bar and arrow slide up, then arrow fades out, wait additional time for animations to finish (.32s)
-  if (greeting.classList.contains("greeting__welcome")) {
-    hideGreeting();
-    // await wait(320);
-  }
+
+  // If this is the first search (greeting__welcome class is applied), hide greeting arrow and slide search bar up
+  if (greeting.classList.contains("greeting__welcome")) hideGreeting();
+
   // If hash is a search query, get data and render search results
   if (hashDirectory === "#search") {
     // if (window.location.hash.contains("title")) return;
     const query = window.location.hash.slice(8);
     return navigateToSearchResults(query);
   }
+
   // If hash is a movie ID, get data and render movie details
   if (hashDirectory === "#title/") {
     const titleID = window.location.hash.slice(7);
