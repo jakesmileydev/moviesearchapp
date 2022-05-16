@@ -1,14 +1,14 @@
-@media (min-width: 600px) {
+@media (min-width: 37.5em) {
   .search-results {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 900px) {
+@media (min-width: 56.25em) {
   .search-results {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 75em) {
   .search-results {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
