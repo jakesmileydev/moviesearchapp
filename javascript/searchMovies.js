@@ -17,7 +17,6 @@ const clearSearchResults = async function () {
       result.classList.add("search-results__fade-out");
     });
     await wait(320);
-
     searchResults.forEach((result) => result.remove());
   }
 };
@@ -102,7 +101,6 @@ const submitSearch = function (e) {
   window.location.hash = `search=${query}`;
 };
 
-// This function accepts a query from the url
 const navigateToSearchResults = async function (query) {
   // Fill in the search bar text with current query (swap '%20' from url with ' ')
   addQueryToSearchBar(query);
