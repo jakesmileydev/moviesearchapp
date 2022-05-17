@@ -11,12 +11,14 @@ const clearAllExistingContent = function () {
   clearSearchErrorMessages();
   clearSearchResults();
   clearMovieDetails();
+  closeTrailerModal();
 };
 
 const handleContentClick = function (e) {
   animateMovieSelection(e);
   copyLinkToClipboard(e);
   openTrailerModal(e);
+  if (!e.target.closest(".modal-button__close")) return;
   closeTrailerModal(e);
 };
 

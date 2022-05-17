@@ -1,14 +1,3 @@
-/* 
-colors
-#34D399 main accent
-#15151A main background
-#22222B search bar background
-#31323F search bar background__active
-#78869D accent text
-#86889d greeting text
-#a4a6b5 accent text on movie__details
-#F3F3F5 main text
-*/
 * {
   padding: 0;
   margin: 0;
@@ -24,15 +13,17 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
 html {
   min-height: 100%;
   position: relative;
 }
+
 body {
   background: #15151a;
-
   color: #f3f3f5;
 }
+
 .content {
   margin-bottom: 10rem;
 }
@@ -73,7 +64,6 @@ h1 i {
   overflow: hidden;
   border-radius: 0.75rem;
 }
-
 .search-form.search-form__welcome {
   transform: translateY(20vh);
 }
@@ -86,17 +76,14 @@ h1 i {
   justify-content: space-between;
   border-radius: 0.75rem;
   padding: 0.4rem;
-  border: 2px solid transparent;
-
-  transition: 0.3s all;
+  border: 3px solid transparent;
+  transition: 0.32s all;
   position: relative;
 }
-
 .search-bar.search-bar__active {
-  border: 2px solid #34d399;
+  border: 3px solid #34d399;
   background-color: #31323f;
 }
-
 .search-bar__input {
   background: transparent;
   width: 100%;
@@ -106,7 +93,6 @@ h1 i {
   font-size: 1.4rem;
   color: #f3f3f5;
 }
-
 .search-bar__button {
   background: transparent;
   border: none;
@@ -119,7 +105,6 @@ h1 i {
   color: #34d399;
   transition: all 0.25s ease;
 }
-
 .search-bar__button:hover {
   cursor: pointer;
   color: white;
@@ -136,20 +121,15 @@ h1 i {
   margin-top: 1rem;
   transition: all 0.32s ease;
 }
-
 .greeting.greeting__welcome {
   transform: translateY(20vh);
 }
-
 .greeting.greeting__hidden {
-  display: none;
   opacity: 0;
 }
-
 .greeting__arrow {
   width: 6rem;
 }
-
 .greeting__text {
   font-family: "Gloria Hallelujah", cursive;
   font-size: 1.6rem;
@@ -172,7 +152,6 @@ h1 i {
   opacity: 0;
   transition: all 0.2s ease;
 }
-
 .spinner.spinner__visible {
   opacity: 1;
 }
@@ -188,24 +167,20 @@ h1 i {
     transform: rotate(360deg);
   }
 }
-
 @keyframes dash {
   0% {
     stroke-dasharray: 1, 150;
     stroke-dashoffset: 0;
   }
-
   50% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -35;
   }
-
   100% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -124;
   }
 }
-
 /* ///////////////////////////////////// */
 /* Search Results */
 .search-results {
@@ -214,17 +189,14 @@ h1 i {
   justify-items: center;
   margin-top: 2rem;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 12rem;
   transition: all 0.3s ease;
   opacity: 0;
   transform: translateY(4rem);
 }
-
 .search-results.search-results__fade-in {
   opacity: 1;
-  transform: translateY(0);
 }
-
 .search-results.search-results__fade-out {
   opacity: 0;
 }
@@ -235,18 +207,9 @@ h1 i {
   margin-top: 8rem;
   background-color: #22222b;
   border-radius: 0.75rem;
-  transition: all 0.32s ease;
+  transition: all 0.3s ease;
   position: relative;
 }
-
-.search-result__link {
-  width: 100%;
-  max-width: 18rem;
-  border-radius: 0.75rem;
-  border: 2px solid transparent;
-  height: 100%;
-}
-
 .search-result::before {
   content: "";
   background: linear-gradient(#31323f, #22222b);
@@ -260,47 +223,48 @@ h1 i {
   opacity: 0;
   transition: all 0.32s ease;
 }
-
-.search-result:hover::before {
-  opacity: 1;
-}
-
 .search-result:hover {
   transform: translateY(-1.4rem);
   cursor: pointer;
-  box-shadow: 0px 10px 13px -7px #02020293;
+  box-shadow: 0px 10px 13px -7px rgba(2, 2, 2, 0.5764705882);
 }
-
+.search-result:hover::before {
+  opacity: 1;
+}
 .search-result:hover .search-result__img {
-  transform: scale(1.1) rotate(4deg);
+  transform: scale(1.05) rotate(1.5deg);
 }
-
+.search-result__link {
+  width: 100%;
+  max-width: 18rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .search-result__info {
   padding: 1rem;
   margin-top: -8rem;
 }
-
 .search-result__img-box {
-  width: 80%;
-  max-width: 16rem;
-  margin: 0 auto 0 auto;
-  border-radius: 0.75rem;
+  width: calc(100% - 2rem);
   overflow: hidden;
+  border-radius: 0.75rem;
   transform: translateY(-8rem);
 }
-
 .search-result__img {
   min-height: 12rem;
   object-fit: cover;
+  transform: scale(1);
   transition: all 0.32s ease;
-  width: 100%;
+  max-width: 100%;
 }
-
 .search-result__title {
   font-size: 1.4rem;
   text-align: center;
 }
-
 .search-result__year {
   font-size: 1.2rem;
   text-align: center;
@@ -317,7 +281,6 @@ h1 i {
   transform: translateY(2rem);
   transition: all 0.32s ease;
 }
-
 .error-message__search.error-message__search__visible {
   opacity: 1;
   transform: translateY(0);
@@ -338,48 +301,38 @@ h1 i {
   opacity: 1;
   transform: translateY(0rem);
 }
-
 .movie-details.movie-details__hidden {
   opacity: 0;
   transform: translateY(4rem);
 }
-
 .movie-details.movie-details__fade-out {
   opacity: 0;
 }
-
 .movie-details__poster-container {
   transform: translateY(-8rem);
   max-width: 80%;
 }
-
 .movie-details__poster {
   min-height: 12rem;
   border-radius: 0.75rem;
   width: 100%;
   object-fit: contain;
 }
-
 .movie-details__info {
   padding: 1rem 1.6rem 1.6rem 1.6rem;
   margin-top: -8rem;
 }
-
 .movie-details__title {
   font-size: 2rem;
   margin-bottom: 0.6rem;
 }
-
 .movie-details__subtitle {
   color: #a4a6b5;
-
   margin-bottom: 2rem;
 }
-
 .movie-details__year {
   margin-right: 2.6rem;
 }
-
 .movie-details__runtime-genre-rating {
   color: #a4a6b5;
   display: flex;
@@ -388,12 +341,10 @@ h1 i {
   margin-bottom: 1rem;
   font-size: 0.875rem;
 }
-
 .movie-details__runtime {
   border: 1px solid #a4a6b5;
   padding: 0.2rem 0.4rem;
 }
-
 .movie-details__rating-text {
   position: absolute;
   top: 50%;
@@ -402,32 +353,26 @@ h1 i {
   padding-bottom: 0.2rem;
   padding-right: 0.1rem;
 }
-
 .movie-details__rating-container {
   margin-left: auto;
   position: relative;
 }
-
 .movie-details__rating-circle {
   transform: rotate(-90deg);
 }
-
 .movie-details__actors {
   font-size: 0.875rem;
   color: #a4a6b5;
   margin-bottom: 2rem;
 }
-
 .movie-details__plot {
   padding-bottom: 1rem;
 }
-
 .movie-details__actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .movie-details__trailer-button {
   display: flex;
   align-items: center;
@@ -441,13 +386,11 @@ h1 i {
   border-radius: 0.75rem;
   transition: all 0.32s ease;
 }
-
 .movie-details__trailer-button:hover {
   color: white;
   background-color: #34d399;
   cursor: pointer;
 }
-
 .movie-details__share-button {
   display: flex;
   align-items: center;
@@ -460,26 +403,23 @@ h1 i {
   transition: all 0.32s ease;
   position: relative;
 }
-
 .movie-details__share-button::before {
   position: absolute;
   top: -130%;
   left: -30%;
-
   content: "Link Copied!";
   color: #34d399;
   font-size: 0.8rem;
   opacity: 0;
   transition: all 0.32s ease;
 }
-
-.movie-details__share-button__success.movie-details__share-button::before {
-  opacity: 1;
-}
-
 .movie-details__share-button:hover {
   color: #34d399;
   cursor: pointer;
+}
+
+.movie-details__share-button__success.movie-details__share-button::before {
+  opacity: 1;
 }
 
 /* ///////////////////////////////////// */
@@ -494,12 +434,10 @@ h1 i {
   opacity: 0;
   transition: all 0.32s ease;
 }
-
 .modal.modal__visible {
   opacity: 1;
 }
-
-.modal-content {
+.modal__content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -510,16 +448,16 @@ h1 i {
   background-color: #31323f;
   border-radius: 0.75rem;
 }
-.modal-header {
+.modal__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.6rem;
 }
-.modal-year {
+.modal__year {
   margin-left: 0.4rem;
 }
-.modal-button__close {
+.modal__button__close {
   display: flex;
   align-items: center;
   color: #34d399;
@@ -528,10 +466,11 @@ h1 i {
   border: none;
   transition: all 0.32s ease;
 }
-.modal-button__close:hover {
+.modal__button__close:hover {
   color: #a4a6b5;
   cursor: pointer;
 }
+
 .iframe-container {
   width: 100%;
   height: 0;
@@ -547,9 +486,9 @@ h1 i {
   width: 100%;
   height: 100%;
 }
+
 /* ///////////////////////////////////// */
 /* Footer */
-
 footer {
   color: #a4a6b5;
   position: absolute;
@@ -557,17 +496,22 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-bottom: 2rem;
-  /* so modal covers it */
+  /* so the trailer modal covers it */
   z-index: -1;
-}
-.footer-text {
-  text-align: center;
-  margin-bottom: 0.4rem;
-}
-.footer-attribution {
-  text-align: center;
+  font-size: 0.9rem;
 }
 footer a:hover {
   color: #34d399;
   text-decoration: underline;
 }
+
+.footer-text {
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+.footer-attribution {
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */

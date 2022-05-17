@@ -1,0 +1,561 @@
+$color-primary: #34d399;
+$color-background-primary: #15151a;
+$color-background-secondary: #22222b;
+$color-background-tertiary: #31323f;
+$color-text-primary: #a4a6b5;
+$color-text-secondary: #86889d;
+$color-text-tertiary: #f3f3f5;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  background: $color-background-primary;
+
+  color: $color-text-tertiary;
+}
+
+.content {
+  margin-bottom: 10rem;
+}
+
+header {
+  text-align: center;
+}
+
+.site-header {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  margin: 2rem 1rem;
+}
+
+h1,
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  line-height: 2.2rem;
+}
+
+h1 i {
+  color: $color-primary;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+/* ///////////////////////////////////// */
+/* Search Bar */
+.search-form {
+  margin: 0 1rem;
+  transition: transform 0.32s ease;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  &.search-form__welcome {
+    transform: translateY(20vh);
+  }
+}
+
+.search-bar {
+  width: 100%;
+  background-color: $color-background-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  padding: 0.4rem;
+  border: 3px solid transparent;
+  transition: 0.32s all;
+  position: relative;
+  &.search-bar__active {
+    border: 3px solid $color-primary;
+    background-color: $color-background-tertiary;
+  }
+  &__input {
+    background: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.4rem 1rem;
+    font-size: 1.4rem;
+    color: $color-text-tertiary;
+  }
+
+  &__button {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    position: absolute;
+    right: -2rem;
+    top: -2.3rem;
+    padding: 3rem 3rem 3rem 0.8rem;
+    color: $color-primary;
+    transition: all 0.25s ease;
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-color: $color-primary;
+    }
+  }
+}
+
+/* ///////////////////////////////////// */
+/* Greeting */
+.greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  transition: all 0.32s ease;
+  &.greeting__welcome {
+    transform: translateY(20vh);
+  }
+  &.greeting__hidden {
+    opacity: 0;
+  }
+  &__arrow {
+    width: 6rem;
+  }
+
+  &__text {
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0 2rem 2rem 2rem;
+    color: $color-text-secondary;
+  }
+}
+
+/* ///////////////////////////////////// */
+/* Spinner */
+.spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 16rem;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  transition: all 0.2s ease;
+  &.spinner__visible {
+    opacity: 1;
+  }
+}
+
+.path {
+  stroke: $color-primary;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* ///////////////////////////////////// */
+/* Search Results */
+.search-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  margin-top: 2rem;
+  gap: 2rem;
+  margin-bottom: 12rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(4rem);
+  &.search-results__fade-in {
+    opacity: 1;
+  }
+  &.search-results__fade-out {
+    opacity: 0;
+  }
+}
+
+.search-result {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+  background-color: $color-background-secondary;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  position: relative;
+  &::before {
+    content: "";
+    background: linear-gradient(
+      $color-background-tertiary,
+      $color-background-secondary
+    );
+    border-radius: 0.75rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.32s ease;
+  }
+  &:hover {
+    transform: translateY(-1.4rem);
+    cursor: pointer;
+    box-shadow: 0px 10px 13px -7px #02020293;
+    &::before {
+      opacity: 1;
+    }
+    .search-result__img {
+      transform: scale(1.05) rotate(1.5deg);
+    }
+  }
+  &__link {
+    width: 100%;
+    max-width: 18rem;
+    border-radius: 0.75rem;
+    border: 2px solid transparent;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__info {
+    padding: 1rem;
+    margin-top: -8rem;
+  }
+
+  &__img-box {
+    width: calc(100% - 2rem);
+    overflow: hidden;
+    border-radius: 0.75rem;
+
+    transform: translateY(-8rem);
+  }
+
+  &__img {
+    min-height: 12rem;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.32s ease;
+    max-width: 100%;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  &__year {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 0.6rem;
+  }
+}
+
+.error-message__search {
+  font-family: "Gloria Hallelujah", cursive;
+  text-align: center;
+  color: $color-text-secondary;
+  font-size: 1.4rem;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.32s ease;
+  &.error-message__search__visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ///////////////////////////////////// */
+/* Movie Details */
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10rem auto 1rem auto;
+  width: calc(100% - 2rem);
+  background-color: $color-background-tertiary;
+  border-radius: 0.75rem;
+  max-width: 40rem;
+  transition: all 0.32s ease;
+  opacity: 1;
+  transform: translateY(0rem);
+
+  &.movie-details__hidden {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+
+  &.movie-details__fade-out {
+    opacity: 0;
+  }
+
+  &__poster-container {
+    transform: translateY(-8rem);
+    max-width: 80%;
+  }
+
+  &__poster {
+    min-height: 12rem;
+    border-radius: 0.75rem;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  &__info {
+    padding: 1rem 1.6rem 1.6rem 1.6rem;
+    margin-top: -8rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  &__subtitle {
+    color: $color-text-primary;
+    margin-bottom: 2rem;
+  }
+
+  &__year {
+    margin-right: 2.6rem;
+  }
+
+  &__runtime-genre-rating {
+    color: $color-text-primary;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  &__runtime {
+    border: 1px solid $color-text-primary;
+    padding: 0.2rem 0.4rem;
+  }
+
+  &__rating-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 0.2rem;
+    padding-right: 0.1rem;
+  }
+
+  &__rating-container {
+    margin-left: auto;
+    position: relative;
+  }
+
+  &__rating-circle {
+    transform: rotate(-90deg);
+  }
+
+  &__actors {
+    font-size: 0.875rem;
+    color: $color-text-primary;
+    margin-bottom: 2rem;
+  }
+
+  &__plot {
+    padding-bottom: 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__trailer-button {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: $color-primary;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid $color-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.32s ease;
+    &:hover {
+      color: white;
+      background-color: $color-primary;
+      cursor: pointer;
+    }
+  }
+
+  &__share-button {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: none;
+    color: $color-text-primary;
+    font-size: 1.2rem;
+    padding: 0.25rem;
+    transition: all 0.32s ease;
+    position: relative;
+    &::before {
+      position: absolute;
+      top: -130%;
+      left: -30%;
+      content: "Link Copied!";
+      color: $color-primary;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: all 0.32s ease;
+    }
+    &:hover {
+      color: $color-primary;
+      cursor: pointer;
+    }
+  }
+}
+
+.movie-details__share-button__success.movie-details__share-button::before {
+  opacity: 1;
+}
+
+/* ///////////////////////////////////// */
+/* Trailer */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.63);
+  opacity: 0;
+  transition: all 0.32s ease;
+  &.modal__visible {
+    opacity: 1;
+  }
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -56%);
+    width: 90%;
+    max-width: 60rem;
+    padding: 1rem;
+    background-color: $color-background-tertiary;
+    border-radius: 0.75rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+  }
+
+  &__year {
+    margin-left: 0.4rem;
+  }
+
+  &__button__close {
+    display: flex;
+    align-items: center;
+    color: $color-primary;
+    background: none;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.32s ease;
+    &:hover {
+      color: $color-text-primary;
+      cursor: pointer;
+    }
+  }
+}
+
+.iframe-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ///////////////////////////////////// */
+/* Footer */
+
+footer {
+  color: $color-text-primary;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2rem;
+  /* so the trailer modal covers it */
+  z-index: -1;
+  font-size: 0.9rem;
+  a:hover {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+}
+
+.footer-text {
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+.footer-attribution {
+  text-align: center;
+}
