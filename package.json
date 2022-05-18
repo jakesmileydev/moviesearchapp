@@ -4,7 +4,8 @@
   "description": "Search movies and watch trailers",
   "main": "index.js",
   "scripts": {
-    "dev-sass": "sass sass/main.scss style.css --watch"
+    "sass-dev": "sass sass/main.scss style.css --watch",
+    "sass-prod": "sass --no-source-map --style=compressed sass/main.scss style.css"
   },
   "repository": {
     "type": "git",
