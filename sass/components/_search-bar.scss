@@ -1,5 +1,5 @@
 .search-form {
-  margin: 0 1rem;
+  // margin: 0 1rem;
   transition: transform 0.32s ease;
   overflow: hidden;
   border-radius: 0.75rem;
@@ -11,9 +11,8 @@
 
 .search-bar {
   width: 100%;
-  max-width: 40rem;
-  overflow: hidden;
-  margin: 0 auto;
+  // overflow: hidden;
+
   background-color: $color-background-secondary;
   display: flex;
   align-items: center;
@@ -23,6 +22,12 @@
   border: 3px solid transparent;
   transition: 0.32s all;
   position: relative;
+
+  &-wrapper {
+    margin: 0 auto;
+    max-width: 40rem;
+
+  }
 
   &.search-bar__active {
     border: 3px solid $color-primary;
