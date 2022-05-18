@@ -1,0 +1,26 @@
+// 600px
+@mixin respond-tablet__portrait {
+    @media (min-width: 37.5em) {
+        @content
+    }
+
+    ;
+}
+
+// 900px
+@mixin respond-tablet__landscape {
+    @media (min-width: 56.25em) {
+        @content
+    }
+
+    ;
+}
+
+// 1200
+@mixin respond-desktop {
+    @media (min-width: 75em) {
+        @content
+    }
+
+    ;
+}
