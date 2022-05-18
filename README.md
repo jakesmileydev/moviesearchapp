@@ -9,7 +9,7 @@
  <br>
 
 
-![chrome-capture-2022-4-18 (2).gif](https://github.com/jakesmileydev/moviesearchapp/blob/master/images/chrome-capture-2022-4-18%20(2).gif?raw=true)
+![chrome-capture-2022-4-18 (2).gif](https://github.com/jakesmileydev/moviesearchapp/blob/master/images/moviesearchapp.gif?raw=true)
 
 
 The design for this app was <strong>heavily</strong> influenced by <a href="https://rodrigodagostino.com/en/">Rodrigo D’Agostino</a>
