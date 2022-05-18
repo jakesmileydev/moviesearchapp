@@ -34,11 +34,10 @@ const renderMovieDetails = async function (movieData) {
   const movieDetailsHTML = `
       <div class="movie-details movie-details__hidden">
         <div class="movie-details__poster-container">
-          <img class="movie-details__poster" src=${
-            movieData.Poster === "N/A"
-              ? "/images/default-poster.webp"
-              : movieData.Poster
-          }>
+          <img class="movie-details__poster" src=${movieData.Poster === "N/A"
+      ? "/images/default-poster.webp"
+      : movieData.Poster
+    }>
         </div>
         <div class="movie-details__info">
           <h3 class="movie-details__title">${movieData.Title}</h3>
@@ -48,16 +47,15 @@ const renderMovieDetails = async function (movieData) {
           </div>
           <div class="movie-details__runtime-genre-rating">
             <span class="movie-details__runtime">${movieData.Runtime.split(
-              " "
-            ).join("&nbsp;")}</span>
+      " "
+    ).join("&nbsp;")}</span>
             <span class="movie-details__genre">${movieData.Genre}</span>
             <div class="movie-details__rating-container">
               <svg class="movie-details__rating-circle" width="40" height="40">
                 <circle stroke="#585A70" fill="transparent" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: 29.4053;">
                 </circle>
-                <circle stroke="#34D399" fill="transparent" stroke-dasharray="113.09733552923255" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: ${
-                  113.09733 - movieData.imdbRating * 10 * 1.13097
-                };">
+                <circle stroke="#34D399" fill="transparent" stroke-dasharray="113.09733552923255" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: ${113.09733 - movieData.imdbRating * 10 * 1.13097
+    };">
                 </circle>
               </svg>
               <span class="movie-details__rating-text">
@@ -68,11 +66,9 @@ const renderMovieDetails = async function (movieData) {
           <p class="movie-details__plot">${movieData.Plot}</p>
           <div class="movie-details__actors">${movieData.Actors}</div>
           <div class="movie-details__actions">
-            <button class="movie-details__trailer-button" data-year="${
-              movieData.Year
-            }" data-title="${
-    movieData.Title
-  }"><i class="ph-play"></i> WATCH TRAILER</button>
+            <button class="movie-details__trailer-button" data-year="${movieData.Year
+    }" data-title="${movieData.Title
+    }"><i class="ph-play"></i> WATCH TRAILER</button>
             <button class="movie-details__share-button" ><i class="ph-share-network"></i></button>
           </div>
         </div>
@@ -98,7 +94,7 @@ const getYouTubeTrailer = async function (query) {
 };
 
 const navigateToMovieDetails = async function (titleID) {
-  let SEARCH_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${titleID}`;
+  let SEARCH_URL = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${titleID}`;
   await wait(200);
   renderSpinner();
   await wait(280);
