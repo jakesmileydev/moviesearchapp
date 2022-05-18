@@ -1,0 +1,25 @@
+.greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  transition: all 0.32s ease;
+  &.greeting__welcome {
+    transform: translateY(20vh);
+  }
+  &.greeting__hidden {
+    opacity: 0;
+  }
+  &__arrow {
+    width: 6rem;
+  }
+
+  &__text {
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0 2rem 2rem 2rem;
+    color: $color-text-secondary;
+  }
+}

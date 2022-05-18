@@ -1,0 +1,151 @@
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10rem auto 1rem auto;
+  width: calc(100% - 2rem);
+  background-color: $color-background-tertiary;
+  border-radius: 0.75rem;
+  max-width: 40rem;
+  transition: all 0.32s ease;
+  opacity: 1;
+  transform: translateY(0rem);
+
+  &.movie-details__hidden {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+
+  &.movie-details__fade-out {
+    opacity: 0;
+  }
+
+  &__poster-container {
+    transform: translateY(-8rem);
+    max-width: 80%;
+  }
+
+  &__poster {
+    min-height: 12rem;
+    border-radius: 0.75rem;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  &__info {
+    padding: 1rem 1.6rem 1.6rem 1.6rem;
+    margin-top: -8rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  &__subtitle {
+    color: $color-text-primary;
+    margin-bottom: 2rem;
+  }
+
+  &__year {
+    margin-right: 2.6rem;
+  }
+
+  &__runtime-genre-rating {
+    color: $color-text-primary;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  &__runtime {
+    border: 1px solid $color-text-primary;
+    padding: 0.2rem 0.4rem;
+  }
+
+  &__rating-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 0.2rem;
+    padding-right: 0.1rem;
+  }
+
+  &__rating-container {
+    margin-left: auto;
+    position: relative;
+  }
+
+  &__rating-circle {
+    transform: rotate(-90deg);
+  }
+
+  &__actors {
+    font-size: 0.875rem;
+    color: $color-text-primary;
+    margin-bottom: 2rem;
+  }
+
+  &__plot {
+    padding-bottom: 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__trailer-button {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: $color-primary;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid $color-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.32s ease;
+    &:hover {
+      color: white;
+      background-color: $color-primary;
+      cursor: pointer;
+    }
+  }
+
+  &__share-button {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: none;
+    color: $color-text-primary;
+    font-size: 1.2rem;
+    padding: 0.25rem;
+    transition: all 0.32s ease;
+    position: relative;
+    &::before {
+      position: absolute;
+      top: -130%;
+      left: -30%;
+      content: "Link Copied!";
+      color: $color-primary;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: all 0.32s ease;
+    }
+    &:hover {
+      color: $color-primary;
+      cursor: pointer;
+    }
+  }
+}
+
+.movie-details__share-button__success.movie-details__share-button::before {
+  opacity: 1;
+}

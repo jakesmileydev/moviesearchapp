@@ -138,8 +138,6 @@ footer a:hover {
 .search-bar {
   width: 100%;
   max-width: 40rem;
-  overflow: hidden;
-  margin: 0 auto;
   background-color: #22222b;
   display: flex;
   align-items: center;

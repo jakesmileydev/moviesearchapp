@@ -1,0 +1,60 @@
+.search-form {
+  margin: 0 1rem;
+  transition: transform 0.32s ease;
+  overflow: hidden;
+  border-radius: 0.75rem;
+
+  &.search-form__welcome {
+    transform: translateY(20vh);
+  }
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 40rem;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: $color-background-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  padding: 0.4rem;
+  border: 3px solid transparent;
+  transition: 0.32s all;
+  position: relative;
+
+  &.search-bar__active {
+    border: 3px solid $color-primary;
+    background-color: $color-background-tertiary;
+  }
+
+  &__input {
+    background: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.4rem 1rem;
+    font-size: 1.4rem;
+    color: $color-text-tertiary;
+  }
+
+  &__button {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    position: absolute;
+    right: -2rem;
+    top: -2.3rem;
+    padding: 3rem 3rem 3rem 0.8rem;
+    color: $color-primary;
+    transition: all 0.25s ease;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-color: $color-primary;
+    }
+  }
+}

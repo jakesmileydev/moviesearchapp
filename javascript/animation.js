@@ -38,7 +38,6 @@ const renderSpinner = async function () {
 const removeSpinner = function () {
   if (!document.querySelector(".spinner")) return;
   document.querySelector(".spinner").classList.remove("spinner__visible");
-  // Remove spinner from DOM
   document.querySelector(".spinner")
     ? document.querySelector(".spinner").remove()
     : "";

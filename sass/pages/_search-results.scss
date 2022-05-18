@@ -1,0 +1,111 @@
+.search-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  margin-top: 2rem;
+  gap: 2rem;
+  margin-bottom: 12rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(4rem);
+  &.search-results__fade-in {
+    opacity: 1;
+  }
+  &.search-results__fade-out {
+    opacity: 0;
+  }
+}
+
+.search-result {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+  background-color: $color-background-secondary;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  position: relative;
+  &::before {
+    content: "";
+    background: linear-gradient(
+      $color-background-tertiary,
+      $color-background-secondary
+    );
+    border-radius: 0.75rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.32s ease;
+  }
+  &:hover {
+    transform: translateY(-1.4rem);
+    cursor: pointer;
+    box-shadow: 0px 10px 13px -7px #02020293;
+    &::before {
+      opacity: 1;
+    }
+    .search-result__img {
+      transform: scale(1.05) rotate(1.5deg);
+    }
+  }
+  &__link {
+    width: 100%;
+    max-width: 18rem;
+    border-radius: 0.75rem;
+    border: 2px solid transparent;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__info {
+    padding: 1rem;
+    margin-top: -8rem;
+  }
+
+  &__img-box {
+    width: calc(100% - 2rem);
+    overflow: hidden;
+    border-radius: 0.75rem;
+
+    transform: translateY(-8rem);
+  }
+
+  &__img {
+    min-height: 12rem;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.32s ease;
+    max-width: 100%;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  &__year {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 0.6rem;
+  }
+}
+
+.error-message__search {
+  font-family: "Gloria Hallelujah", cursive;
+  text-align: center;
+  color: $color-text-secondary;
+  font-size: 1.4rem;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.32s ease;
+  &.error-message__search__visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

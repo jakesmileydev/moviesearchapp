@@ -1,0 +1,83 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  background: $color-background-primary;
+
+  color: $color-text-tertiary;
+}
+
+.content {
+  margin-bottom: 10rem;
+}
+
+header {
+  text-align: center;
+}
+
+.site-header {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  margin: 2rem 1rem;
+}
+
+h1,
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  line-height: 2.2rem;
+}
+
+h1 i {
+  color: $color-primary;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+footer {
+  color: $color-text-primary;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2rem;
+  /* so the trailer modal covers it */
+  z-index: -1;
+  font-size: 0.9rem;
+  a:hover {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+}
+
+.footer-text {
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+
+.footer-attribution {
+  text-align: center;
+}

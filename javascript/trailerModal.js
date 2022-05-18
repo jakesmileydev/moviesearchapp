@@ -29,6 +29,7 @@ const openTrailerModal = async function (e) {
 
 const closeTrailerModal = function (e) {
   if (!document.querySelector(".modal")) return;
+
   document.querySelector(".modal").classList.remove("modal__visible");
   setTimeout(() => {
     document.querySelector(".modal").remove();
