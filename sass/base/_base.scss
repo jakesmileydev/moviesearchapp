@@ -67,6 +67,7 @@ footer {
   /* so the trailer modal covers it */
   z-index: -1;
   font-size: 0.9rem;
+
   a:hover {
     color: $color-primary;
     text-decoration: underline;
@@ -80,4 +81,22 @@ footer {
 
 .footer-attribution {
   text-align: center;
+}
+
+@media (min-width: 37.5em) {
+  .search-results {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 56.25em) {
+  .search-results {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 75em) {
+  .search-results {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
