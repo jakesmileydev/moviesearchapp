@@ -1,6 +1,6 @@
 const searchMovies = async function (userQuery) {
   // Get search results of query from the OMDB API
-  let SEARCH_URL = `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&type=movie&s=`;
+  let SEARCH_URL = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&type=movie&s=`;
   // Fetch data
   const response = await fetch(`${SEARCH_URL}${userQuery}`);
   // Convert data to json
