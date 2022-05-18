@@ -111,6 +111,7 @@
     padding: 0.5rem 1rem;
     border-radius: 0.75rem;
     transition: all 0.32s ease;
+
     &:hover {
       color: white;
       background-color: $color-primary;
@@ -129,6 +130,7 @@
     padding: 0.25rem;
     transition: all 0.32s ease;
     position: relative;
+
     &::before {
       position: absolute;
       top: -130%;
@@ -139,6 +141,7 @@
       opacity: 0;
       transition: all 0.32s ease;
     }
+
     &:hover {
       color: $color-primary;
       cursor: pointer;

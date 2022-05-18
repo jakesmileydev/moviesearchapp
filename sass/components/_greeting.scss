@@ -5,12 +5,15 @@
   gap: 1rem;
   margin-top: 1rem;
   transition: all 0.32s ease;
+
   &.greeting__welcome {
     transform: translateY(20vh);
   }
+
   &.greeting__hidden {
     opacity: 0;
   }
+
   &__arrow {
     width: 6rem;
   }

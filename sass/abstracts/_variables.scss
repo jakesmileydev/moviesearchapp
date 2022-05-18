@@ -5,21 +5,3 @@ $color-background-tertiary: #31323f;
 $color-text-primary: #a4a6b5;
 $color-text-secondary: #86889d;
 $color-text-tertiary: #f3f3f5;
-
-@media (min-width: 37.5em) {
-    .search-results {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (min-width: 56.25em) {
-    .search-results {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-@media (min-width: 75em) {
-    .search-results {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-}
