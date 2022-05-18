@@ -1,10 +1,13 @@
 @import "abstracts/mixins";
 @import "abstracts/variables";
+
 @import "base/animation";
 @import "base/base";
+
 @import "components/greeting";
 @import "components/search-bar";
 @import "components/spinner";
 @import "components/trailer-modal";
+
 @import "pages/movie-details";
 @import "pages/search-results";

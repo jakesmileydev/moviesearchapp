@@ -9,4 +9,4 @@
  <br>
 
 
-![chrome-capture-2022-4-18 (2).gif](https://github.com/jakesmileydev/moviesearchapp/blob/master/chrome-capture-2022-4-18%20(2).gif?raw=true)
+![chrome-capture-2022-4-18 (2).gif](https://github.com/jakesmileydev/moviesearchapp/blob/master/images/chrome-capture-2022-4-18%20(2).gif?raw=true)
