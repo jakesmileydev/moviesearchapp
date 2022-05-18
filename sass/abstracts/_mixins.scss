@@ -16,7 +16,7 @@
     ;
 }
 
-// 1200
+// 1200px
 @mixin respond-desktop {
     @media (min-width: 75em) {
         @content
