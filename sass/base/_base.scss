@@ -26,7 +26,7 @@ body {
 }
 
 .content {
-  margin-bottom: 10rem;
+  margin: 0 1rem 2rem 1rem;
 }
 
 header {
@@ -41,11 +41,12 @@ header {
   margin: 2rem 1rem;
 }
 
-h1,
+h1 a,
 h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   line-height: 2.2rem;
+  font-size: 1.7rem;
 }
 
 h1 i {

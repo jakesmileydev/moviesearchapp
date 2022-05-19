@@ -6,10 +6,16 @@
   width: calc(100% - 2rem);
   background-color: $color-background-tertiary;
   border-radius: 0.75rem;
-  max-width: 40rem;
+  max-width: 50rem;
   transition: all 0.32s ease;
   opacity: 1;
   transform: translateY(0rem);
+
+  @include respond-tablet__portrait {
+    display: grid;
+    margin-top: 8rem;
+    grid-template-columns: .8fr 1fr;
+  }
 
   &.movie-details__hidden {
     opacity: 0;
@@ -23,6 +29,12 @@
   &__poster-container {
     transform: translateY(-8rem);
     max-width: 80%;
+
+    @include respond-tablet__portrait {
+      max-width: none;
+      margin-top: 2rem;
+      margin-left: 1rem;
+    }
   }
 
   &__poster {
@@ -35,6 +47,10 @@
   &__info {
     padding: 1rem 1.6rem 1.6rem 1.6rem;
     margin-top: -8rem;
+
+    @include respond-tablet__portrait {
+      margin-top: 0;
+    }
   }
 
   &__title {
