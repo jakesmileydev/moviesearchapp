@@ -63,10 +63,10 @@ const renderSearchResults = async function (data) {
         <li class="search-result">
           <a class="search-result__link" href="#title/${result.imdbID}">
             <div class="search-result__img-box">
-              <img class="search-result__img" src=${result.Poster === "N/A"
+              <img width="300" height="400" class="search-result__img" src=${result.Poster === "N/A"
         ? "/images/default-poster.webp"
         : result.Poster
-      }>
+      } alt="${result.Title} movie poster">
             </div>
             <div class="search-result__info">
               <h3 class="search-result__title">${result.Title}</h3>
