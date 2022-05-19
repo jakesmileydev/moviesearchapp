@@ -39,27 +39,40 @@ header {
   gap: .6rem;
   align-items: center;
   margin: 2rem 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  line-height: 2.2rem;
+  font-size: 1.6rem;
 
   .ionicon {
-    width: 1.8rem;
+    width: 2rem;
     transform: rotate(45deg);
 
     path {
       stroke: $color-primary;
     }
   }
+
+  @include respond-tablet__portrait {
+    font-size: 2.1rem;
+
+    .ionicon {
+      width: 2.6rem;
+    }
+  }
 }
 
-h1 a:link,
+
+
 h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  line-height: 2.2rem;
+
   font-size: 1.7rem;
 }
 
 
-
 .container {
+  max-width: 70rem;
   margin: 0 auto;
 }

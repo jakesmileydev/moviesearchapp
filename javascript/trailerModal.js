@@ -12,7 +12,9 @@ const openTrailerModal = async function (e) {
               <div class="modal__content">
                 <div class="modal__header">
                   <h3 class="modal__title">${title}<span class="modal__year">(${year})</span></h3>
-                  <button class="modal__button__close"><i class="ph-x"></i></button>
+                  <button class="modal__button__close">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"/></svg>
+                  </button>
                 </div>
                 <div class="iframe-container">
                 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/${trailerSrc}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

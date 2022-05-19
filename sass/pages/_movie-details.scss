@@ -128,10 +128,20 @@
     border-radius: 0.75rem;
     transition: all 0.32s ease;
 
+    .ionicon {
+      fill: $color-primary;
+      width: 1.4rem;
+      transition: all .32s ease;
+    }
+
     &:hover {
       color: white;
       background-color: $color-primary;
       cursor: pointer;
+
+      .ionicon {
+        fill: white;
+      }
     }
   }
 
@@ -141,16 +151,22 @@
     gap: 0.6rem;
     background: transparent;
     border: none;
-    color: $color-text-primary;
-    font-size: 1.2rem;
+
+
     padding: 0.25rem;
-    transition: all 0.32s ease;
     position: relative;
+
+    .ionicon {
+      width: 1.8rem;
+      fill: $color-text-primary;
+      transition: all 0.32s ease;
+
+    }
 
     &::before {
       position: absolute;
-      top: -130%;
-      left: -30%;
+      top: -100%;
+      left: -7%;
       content: "Link Copied!";
       color: $color-primary;
       font-size: 0.8rem;
@@ -161,6 +177,10 @@
     &:hover {
       color: $color-primary;
       cursor: pointer;
+
+      .ionicon {
+        fill: $color-primary;
+      }
     }
   }
 }

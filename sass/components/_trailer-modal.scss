@@ -36,17 +36,22 @@
   }
 
   &__button__close {
-    display: flex;
-    align-items: center;
-    color: $color-primary;
     background: none;
-    font-size: 1.4rem;
     border: none;
-    transition: all 0.32s ease;
+
+    .ionicon {
+      transition: all 0.32s ease;
+      width: 1.8rem;
+      fill: $color-primary;
+    }
 
     &:hover {
-      color: $color-text-primary;
+
       cursor: pointer;
+
+      .ionicon {
+        fill: $color-text-primary
+      }
     }
   }
 }

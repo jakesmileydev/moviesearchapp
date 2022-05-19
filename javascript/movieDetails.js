@@ -54,8 +54,7 @@ const renderMovieDetails = async function (movieData) {
               <svg class="movie-details__rating-circle" width="40" height="40">
                 <circle stroke="#585A70" fill="transparent" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: 29.4053;">
                 </circle>
-                <circle stroke="#34D399" fill="transparent" stroke-dasharray="113.09733552923255" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: ${113.09733 - movieData.imdbRating * 10 * 1.13097
-    };">
+                <circle stroke="#34D399" fill="transparent" stroke-dasharray="113.09733552923255" stroke-width="4" r="18" cx="20" cy="20" style="stroke-dashoffset: ${113.09733 - movieData.imdbRating * 10 * 1.13097};">
                 </circle>
               </svg>
               <span class="movie-details__rating-text">
@@ -66,10 +65,13 @@ const renderMovieDetails = async function (movieData) {
           <p class="movie-details__plot">${movieData.Plot}</p>
           <div class="movie-details__actors">${movieData.Actors}</div>
           <div class="movie-details__actions">
-            <button class="movie-details__trailer-button" data-year="${movieData.Year
-    }" data-title="${movieData.Title
-    }"><i class="ph-play"></i> WATCH TRAILER</button>
-            <button class="movie-details__share-button" ><i class="ph-share-network"></i></button>
+            <button class="movie-details__trailer-button" data-year="${movieData.Year}" data-title="${movieData.Title}">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Play</title><path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z"/></svg>
+              WATCH TRAILER
+            </button>
+            <button class="movie-details__share-button" >
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Share Social</title><path d="M384 336a63.78 63.78 0 00-46.12 19.7l-148-83.27a63.85 63.85 0 000-32.86l148-83.27a63.8 63.8 0 10-15.73-27.87l-148 83.27a64 64 0 100 88.6l148 83.27A64 64 0 10384 336z"/></svg>  
+            </button>
           </div>
         </div>
       </div>
@@ -94,7 +96,8 @@ const getYouTubeTrailer = async function (query) {
 };
 
 const navigateToMovieDetails = async function (titleID) {
-  let SEARCH_URL = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${titleID}`;
+  clearSearchBarInputValue();
+  const SEARCH_URL = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${titleID}`;
   await wait(200);
   renderSpinner();
   await wait(280);
