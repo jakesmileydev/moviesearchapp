@@ -14,7 +14,7 @@
   @include respond-tablet__portrait {
     display: grid;
     margin-top: 8rem;
-    grid-template-columns: .8fr 1fr;
+    grid-template-columns: .5fr 1fr;
   }
 
   &.movie-details__hidden {
@@ -45,7 +45,7 @@
   }
 
   &__info {
-    padding: 1rem 1.6rem 1.6rem 1.6rem;
+    padding: 1rem 1.6rem 1rem 1.6rem;
     margin-top: -8rem;
 
     @include respond-tablet__portrait {

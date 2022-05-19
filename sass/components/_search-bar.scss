@@ -55,12 +55,24 @@
     top: -2.3rem;
     padding: 3rem 3rem 3rem 0.8rem;
     color: $color-primary;
-    transition: all 0.25s ease;
+    transition: all 0.32s ease;
+
+    .ionicon {
+      width: 2rem;
+      height: 2rem;
+
+      fill: $color-primary;
+      transition: all .32s ease;
+    }
 
     &:hover {
       cursor: pointer;
       color: white;
       background-color: $color-primary;
+
+      .ionicon {
+        fill: white;
+      }
     }
   }
 }
