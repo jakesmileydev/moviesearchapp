@@ -37,10 +37,10 @@ const renderMovieDetails = async function (movieData) {
           <img class="movie-details__poster" src=${movieData.Poster === "N/A"
       ? "/images/default-poster.webp"
       : movieData.Poster
-    }>
+    } alt ="${movieData.Title} movie poster">
         </div>
         <div class="movie-details__info">
-          <h3 class="movie-details__title">${movieData.Title}</h3>
+          <h2 class="movie-details__title">${movieData.Title}</h2>
           <div class="movie-details__subtitle">
             <span class="movie-details__year">${movieData.Year}</span>
             <span class="movie-details__director">${movieData.Director}</span>
