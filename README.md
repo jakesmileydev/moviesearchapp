@@ -1,6 +1,6 @@
 <h1>Movie Search App</h1>
 
-<h3><a target="_blank"href="https://moviesearchappjs.netlify.app">Click here to see the live site</a></h3>
+<h3><a target="_blank"href="https://moviesearchappjs.netlify.app">Click here to visit the live site</a></h3>
  
 <p>Search movies using the Open Movie Database API, then watch the trailer using the YouTube API</p>
 
