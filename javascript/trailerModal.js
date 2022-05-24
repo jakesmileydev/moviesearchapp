@@ -5,7 +5,7 @@ const openTrailerModal = async function (e) {
   const trailerSrc = await getYouTubeTrailer(`${title} ${year} trailer`);
   if (!trailerSrc) return;
   // &origin=https://yourdomain.com
-  // try adding this to the url once i get a domain to fix the errors while watching the trailer
+  // try adding this to the url once i get a domain, to fix the errors while watching the trailer
   const modalHTML = `
           <div class="modal">
             
