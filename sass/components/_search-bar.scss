@@ -8,7 +8,6 @@
   &-wrapper {
     margin: 0 auto;
     max-width: 54rem;
-
   }
 
   &.search-form__welcome {
@@ -27,8 +26,6 @@
   border: 3px solid transparent;
   transition: 0.32s all;
   position: relative;
-
-
 
   &.search-bar__active {
     border: 3px solid $color-primary;
@@ -62,7 +59,7 @@
       height: 1.6rem;
 
       fill: $color-primary;
-      transition: all .32s ease;
+      transition: all 0.32s ease;
     }
 
     &:hover {
